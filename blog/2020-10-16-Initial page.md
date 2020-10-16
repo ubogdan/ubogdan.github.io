@@ -1,10 +1,10 @@
 ---
-title: Initial page
+title: My first blog page
 date: 2020-10-16
 ---
 
 
-```go
+```golang
 import "fmt"
 
 func main(){
