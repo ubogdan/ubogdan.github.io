@@ -214,7 +214,7 @@ data "aws_iam_policy_document" "bucket" {
     ]
 
     effect = "Allow"
-    resources = [aws_s3_bucket.website.arn]
+    resources = [aws_s3_bucket.website.arn, "${aws_s3_bucket.website.arn}/*"]
   }
 }
 
