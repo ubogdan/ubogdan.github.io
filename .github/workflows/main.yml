@@ -1,5 +1,9 @@
 name: CI
-on: push
+on:
+  push:
+    paths-ignore:
+      - 'terraform/**'
+
 jobs:
   deploy:
     runs-on: ubuntu-18.04
