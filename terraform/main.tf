@@ -199,3 +199,48 @@ resource "aws_s3_bucket_policy" "resource_bucket_policy" {
   bucket = aws_s3_bucket.website.id
   policy = data.aws_iam_policy_document.bucket_policy.json
 }
+
+resource "aws_iam_user" "pipeline" {
+  name = "github-actions-ubogdan.com-pipeline"
+}
+
+data "aws_iam_policy_document" "bucket" {
+  statement {
+    actions = [
+      "s3:ListBucket",
+      "s3:GetObject",
+      "s3:PutObject",
+      "s3:DeleteObject"
+    ]
+
+    effect = "Allow"
+    resources = [aws_s3_bucket.website.arn]
+  }
+}
+
+resource "aws_iam_user_policy" "bucket_policy" {
+  name = "PipelineBucketAccess"
+  user   = aws_iam_user.pipeline.name
+  policy = data.aws_iam_policy_document.bucket.json
+}
+
+data "aws_iam_policy_document" "cloudfront" {
+  statement {
+    actions = [
+      "cloudfront:CreateInvalidation",
+    ]
+
+    effect = "Allow"
+    resources = [aws_cloudfront_distribution.website.arn]
+  }
+}
+
+resource "aws_iam_user_policy" "cloudfront_policy" {
+  name   = "PipelineCloudFrontAccess"
+  user   = aws_iam_user.pipeline.name
+  policy = data.aws_iam_policy_document.cloudfront.json
+}
+
+resource "aws_iam_access_key" "access_key" {
+  user = aws_iam_user.pipeline.name
+}
