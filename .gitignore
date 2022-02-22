@@ -1,0 +1,6 @@
+.idea
+**/*.tfvars
+**/.terraform
+
+public/*
+tmp/*
