@@ -27,7 +27,7 @@ readmore = true # Show "Read more" button in list if true
 authorbox = false
 pager = true
 post_meta = ["author", "date", "categories", "translations"] # Order of post meta information
-customCSS = ["css/highlight.css","css/override.css"] # Include custom CSS files
+customCSS = ["css/highlight.css", "css/override.css"] # Include custom CSS files
 
 
 [Params.logo]
