@@ -94,17 +94,17 @@ resource "aws_cloudfront_distribution" "website" {
     max_ttl = 31536000
   }
 
-  // Replace default CloudFront 403 error with 404.html
   custom_error_response {
     error_caching_min_ttl = 3600
     error_code = 403
     response_code = 403
-    response_page_path = "/404.html"
+    response_page_path = "/403.html"
   }
 
   restrictions {
     geo_restriction {
-      restriction_type = "none"
+      restriction_type = "blacklist"
+      locations        = ["RU"]
     }
   }
 
