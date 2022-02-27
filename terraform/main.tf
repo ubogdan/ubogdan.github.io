@@ -95,10 +95,17 @@ resource "aws_cloudfront_distribution" "website" {
   }
 
   custom_error_response {
-    error_caching_min_ttl = 3600
+    error_caching_min_ttl = 86400
     error_code = 403
     response_code = 403
     response_page_path = "/403.html"
+  }
+
+  custom_error_response {
+    error_caching_min_ttl = 86400
+    error_code = 404
+    response_code = 404
+    response_page_path = "/404.html"
   }
 
   restrictions {
@@ -184,13 +191,22 @@ resource "aws_s3_bucket_public_access_block" "block_public_access" {
 
 data "aws_iam_policy_document" "bucket_policy" {
   statement {
-    actions = ["s3:GetObject"]
+    actions = [
+      "s3:ListBucket",
+      "s3:GetObject"
+    ]
+
     effect = "Allow"
     principals {
       identifiers = [aws_cloudfront_origin_access_identity.origin_access_identity.iam_arn]
       type = "AWS"
     }
-    resources = [for path in var.allowed_paths: join("/", [aws_s3_bucket.website.arn, trimprefix(path,"/")])]
+
+    resources = [
+      aws_s3_bucket.website.arn,
+      "${aws_s3_bucket.website.arn}/*"
+    ]
+
     sid = var.site_name
   }
 }

@@ -4,12 +4,6 @@ variable "site_name" {
   description = "The domain name for the website."
 }
 
-variable "allowed_paths" {
-  type = list(string)
-  default = ["*"]
-  description = "List of bucket items paths can be accessed trough CloudFront."
-}
-
 variable "cors_rules" {
   type = list(any)
   description = "List of CORS rules tp be added to S3 bucket"
