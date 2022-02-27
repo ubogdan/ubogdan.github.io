@@ -26,6 +26,5 @@ variable "minimum_protocol_version" {
 data "aws_acm_certificate" "wildcard" {
   domain = "*.ubogdan.com"
   statuses = ["ISSUED"]
-
 }
 
