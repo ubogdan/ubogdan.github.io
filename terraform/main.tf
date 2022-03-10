@@ -7,7 +7,7 @@ terraform {
 
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
       version = "~> 3.0"
     }
   }
@@ -26,11 +26,11 @@ resource "aws_s3_bucket" "website" {
   dynamic "cors_rule" {
     for_each = var.cors_rules
     content {
-      allowed_headers = lookup(cors_rule.value, "allowed_headers",null )
+      allowed_headers = lookup(cors_rule.value, "allowed_headers", null)
       allowed_methods = cors_rule.value.allowed_methods
       allowed_origins = cors_rule.value.allowed_origins
-      expose_headers = lookup(cors_rule.value, "expose_headers",null )
-      max_age_seconds = lookup(cors_rule.value, "max_age_seconds",null )
+      expose_headers  = lookup(cors_rule.value, "expose_headers", null)
+      max_age_seconds = lookup(cors_rule.value, "max_age_seconds", null)
     }
   }
 }
@@ -40,33 +40,33 @@ resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
 }
 
 resource "aws_cloudfront_distribution" "website" {
-  enabled = true
+  enabled             = true
   wait_for_deployment = false
   default_root_object = "index.html"
-  aliases = [ var.site_name, "www.${var.site_name}"]
+  aliases             = [var.site_name, "www.${var.site_name}"]
 
   origin {
     domain_name = aws_s3_bucket.website.bucket_domain_name
-    origin_id = "S3-${aws_s3_bucket.website.id}"
+    origin_id   = "S3-${aws_s3_bucket.website.id}"
 
     s3_origin_config {
       origin_access_identity = aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path
     }
 
     dynamic "custom_header" {
-      for_each = [for h in var.custom_orgin_headers: h ]
+      for_each = [for h in var.custom_orgin_headers : h]
       content {
-        name = custom_header.value.name
+        name  = custom_header.value.name
         value = custom_header.value.value
       }
     }
   }
 
   default_cache_behavior {
-    allowed_methods = length(var.cors_rules) > 0 ? ["GET","HEAD","OPTIONS"] : ["GET","HEAD"]
-    cached_methods = length(var.cors_rules) > 0 ? ["GET","HEAD","OPTIONS"] : ["GET","HEAD"]
-    target_origin_id = "S3-${aws_s3_bucket.website.id}"
-    compress = true
+    allowed_methods        = length(var.cors_rules) > 0 ? ["GET", "HEAD", "OPTIONS"] : ["GET", "HEAD"]
+    cached_methods         = length(var.cors_rules) > 0 ? ["GET", "HEAD", "OPTIONS"] : ["GET", "HEAD"]
+    target_origin_id       = "S3-${aws_s3_bucket.website.id}"
+    compress               = true
     viewer_protocol_policy = "redirect-to-https"
 
     forwarded_values {
@@ -74,12 +74,12 @@ resource "aws_cloudfront_distribution" "website" {
       cookies {
         forward = "none"
       }
-      headers = length(var.cors_rules) > 0 ? ["Access-Control-Request-Headers","Access-Control-Request-Method","Origin"] : []
+      headers = length(var.cors_rules) > 0 ? ["Access-Control-Request-Headers", "Access-Control-Request-Method", "Origin"] : []
     }
 
     // Request rewrite
     function_association {
-      event_type = "viewer-request"
+      event_type   = "viewer-request"
       function_arn = aws_cloudfront_function.cloudfront_viewer_request.arn
     }
 
@@ -89,36 +89,36 @@ resource "aws_cloudfront_distribution" "website" {
       function_arn = aws_cloudfront_function.cloudfront_viewer_response.arn
     }
 
-    min_ttl = 0
+    min_ttl     = 0
     default_ttl = 86400
-    max_ttl = 31536000
+    max_ttl     = 31536000
   }
 
   custom_error_response {
     error_caching_min_ttl = 86400
-    error_code = 403
-    response_code = 403
-    response_page_path = "/403.html"
+    error_code            = 403
+    response_code         = 403
+    response_page_path    = "/403.html"
   }
 
   custom_error_response {
     error_caching_min_ttl = 86400
-    error_code = 404
-    response_code = 404
-    response_page_path = "/404.html"
+    error_code            = 404
+    response_code         = 404
+    response_page_path    = "/404.html"
   }
 
   restrictions {
     geo_restriction {
       restriction_type = "blacklist"
-      locations        = ["RU"]
+      locations        = ["RU", "BY"]
     }
   }
 
 
   viewer_certificate {
-    acm_certificate_arn = data.aws_acm_certificate.wildcard.arn
-    ssl_support_method = "sni-only"
+    acm_certificate_arn      = data.aws_acm_certificate.wildcard.arn
+    ssl_support_method       = "sni-only"
     minimum_protocol_version = var.minimum_protocol_version
   }
 
@@ -199,7 +199,7 @@ data "aws_iam_policy_document" "bucket_policy" {
     effect = "Allow"
     principals {
       identifiers = [aws_cloudfront_origin_access_identity.origin_access_identity.iam_arn]
-      type = "AWS"
+      type        = "AWS"
     }
 
     resources = [
@@ -229,13 +229,13 @@ data "aws_iam_policy_document" "bucket" {
       "s3:DeleteObject"
     ]
 
-    effect = "Allow"
+    effect    = "Allow"
     resources = [aws_s3_bucket.website.arn, "${aws_s3_bucket.website.arn}/*"]
   }
 }
 
 resource "aws_iam_user_policy" "bucket_policy" {
-  name = "PipelineBucketAccess"
+  name   = "PipelineBucketAccess"
   user   = aws_iam_user.pipeline.name
   policy = data.aws_iam_policy_document.bucket.json
 }
@@ -246,7 +246,7 @@ data "aws_iam_policy_document" "cloudfront" {
       "cloudfront:CreateInvalidation",
     ]
 
-    effect = "Allow"
+    effect    = "Allow"
     resources = [aws_cloudfront_distribution.website.arn]
   }
 }

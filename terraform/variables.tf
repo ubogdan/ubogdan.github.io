@@ -1,30 +1,30 @@
 variable "site_name" {
-  type = string
-  default = "ubogdan.com"
+  type        = string
+  default     = "ubogdan.com"
   description = "The domain name for the website."
 }
 
 variable "cors_rules" {
-  type = list(any)
+  type        = list(any)
   description = "List of CORS rules tp be added to S3 bucket"
-  default = []
+  default     = []
 }
 variable "custom_orgin_headers" {
   type = list(object({
-    name = string
+    name  = string
     value = string
   }))
   default = []
 }
 
 variable "minimum_protocol_version" {
-  type = string
-  default = "TLSv1.2_2021"
+  type        = string
+  default     = "TLSv1.2_2021"
   description = "Minimum version of the SSL protocol used for HTTPS connections. One of: SSLv3, TLSv1, TLSv1.1_2016, TLSv1.2_2018 , TLSv1.2_2019 and TLSv1.2_2021"
 }
 
 data "aws_acm_certificate" "wildcard" {
-  domain = "*.ubogdan.com"
+  domain   = "*.ubogdan.com"
   statuses = ["ISSUED"]
 }
 
