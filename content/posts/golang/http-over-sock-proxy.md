@@ -4,7 +4,7 @@ description: ""
 date: "2021-10-13T23:57:09+03:00"
 thumbnail: ""
 categories:
-- "Programing"
+- "Programming"
 tags:
 - "programming"
 - "golang"

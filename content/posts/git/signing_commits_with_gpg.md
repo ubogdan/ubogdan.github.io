@@ -4,9 +4,9 @@ description: ""
 date: "2022-03-13T18:32:54+02:00"
 thumbnail: ""
 categories:
-- "Programing"
+- "Programming"
 tags:
-- "programing"
+- "programming"
 - "git"
 - "gpg"
 widgets:

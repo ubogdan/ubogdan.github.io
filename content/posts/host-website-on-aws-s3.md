@@ -9,7 +9,7 @@ categories:
 - "Amazon Web Services"
 tags:
 - "terraform"
-- "s3"
+- "aws"
 widgets:
 - "categories"
 - "taglist"
