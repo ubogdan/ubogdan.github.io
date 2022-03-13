@@ -8,6 +8,9 @@ categories:
 tags:
 - "linux"
 - "recovery"
+widgets:
+- "categories"
+- "taglist"
 ---
 
 We all make small mistakes every day. Unfortunately, some of these mistakes are unforgivable because we end up destroying or losing data for various reasons.

@@ -9,6 +9,9 @@ tags:
 - "golang"
 - "middleware"
 - "programming"
+widgets:
+- "categories"
+- "taglist"
 ---
 
 Request-based tracing provides a way to determine what exactly is happening with your requests and why.

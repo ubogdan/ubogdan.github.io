@@ -9,6 +9,9 @@ tags:
 - "Cisco"
 - "DHCP"
 - "Networking"
+widgets:
+- "categories"
+- "taglist"
 ---
 
 DHCP snooping is a security feature that acts as a firewall between untrusted hosts and trusted DHCP servers.

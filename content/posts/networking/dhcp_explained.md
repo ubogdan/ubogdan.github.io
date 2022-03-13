@@ -8,6 +8,9 @@ categories:
 tags:
 - "DHCP"
 - "Networking"
+widgets:
+- "categories"
+- "taglist"
 ---
 
 DHCP stands for dynamic host configuration protocol and is a network protocol used on IP networks where a DHCP server automatically assigns an IP address and other information to each host on the network so they can communicate efficiently with other endpoints.

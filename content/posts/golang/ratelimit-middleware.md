@@ -9,6 +9,9 @@ tags:
 - "golang"
 - "middleware"
 - "programming"
+widgets:
+- "categories"
+- "taglist"
 ---
 
 If you're running a HTTP server and want to rate limit user requests, and most of the frameworks are providing their own middleware.

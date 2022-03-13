@@ -9,6 +9,9 @@ tags:
 - "programing"
 - "git"
 - "gpg"
+widgets:
+- "categories"
+- "taglist"
 ---
 
 

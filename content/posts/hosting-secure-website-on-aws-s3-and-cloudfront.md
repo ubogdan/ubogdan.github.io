@@ -9,6 +9,9 @@ tags:
 - "terraform"
 - "s3"
 - "cloudfront"
+widgets:
+- "categories"
+- "taglist"
 ---
 
 By the time you finish reading this article, you will know how to get your static websites up and running securely on AWS using Terraform. This can be a very cost-effective way of hosting a website. 

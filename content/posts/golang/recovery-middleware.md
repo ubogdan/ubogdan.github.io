@@ -9,6 +9,9 @@ tags:
 - "golang"
 - "middleware"
 - "programming"
+widgets:
+- "categories"
+- "taglist"
 ---
 
 No mater if you are creating a simple rest service or a complex one, you will need to handle panics in order to provide a good resiliency.

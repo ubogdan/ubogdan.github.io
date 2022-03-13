@@ -8,6 +8,9 @@ categories:
 tags:
 - "linux"
 - "tftp"
+widgets:
+- "categories"
+- "taglist"
 ---
 
 TFTP (Trivial File Transfer Protocol) is a simplified version of FTP (File Transfer Protocol). It was designed to be easy and simple. TFTP leaves out many authentication features of FTP and it runs on UDP port 69. As it is very lightweight, it is still used for different purposes.

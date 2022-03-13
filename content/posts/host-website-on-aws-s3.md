@@ -10,6 +10,9 @@ categories:
 tags:
 - "terraform"
 - "s3"
+widgets:
+- "categories"
+- "taglist"
 ---
 
 By the time you finish reading this article, you will know how to get your static websites up and running using AWS S3.

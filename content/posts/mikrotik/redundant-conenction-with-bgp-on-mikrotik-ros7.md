@@ -9,6 +9,9 @@ tags:
 - "bgp"
 - "networking"
 - "mikrotik"
+widgets:
+- "categories"
+- "taglist"
 ---
 
 Setting up bgp on mikrotik CCR2004-16G-2S+ was quite challenging because it only supports ROs7. 
