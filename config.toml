@@ -58,3 +58,5 @@ tags_counter = false    # Enable counter for each tag in "Tags" widget (disabled
 # bitbucket = ""
 # email = ""
   codewars = "ubogdan"
+  codersrank = "ubogdan"
+  hackerrank = "ubogdan"

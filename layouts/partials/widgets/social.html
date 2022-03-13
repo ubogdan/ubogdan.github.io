@@ -20,7 +20,7 @@
         {{- end }}
         {{- with .Site.Params.widgets.social.instagram }}
         <div class="widget-social__item widget__item">
-            <a class="widget-social__link widget__link btn" title="Reach me onInstagram" rel="noopener noreferrer" href="https://www.instagram.com/{{ . }}" target="_blank">
+            <a class="widget-social__link widget__link btn" title="Reach me on Instagram" rel="noopener noreferrer" href="https://www.instagram.com/{{ . }}" target="_blank">
                 {{ partial "svg/instagram.svg" (dict "class" "widget-social__link-icon") }}
                 <span>Instagram</span>
             </a>
@@ -44,7 +44,7 @@
         {{- end }}
         {{- with .Site.Params.widgets.social.github }}
         <div class="widget-social__item widget__item">
-            <a class="widget-social__link widget__link btn" title="Reach me on GitHub" rel="noopener noreferrer" href="https://github.com/{{ . }}" target="_blank">
+            <a class="widget-social__link widget__link btn" title="My GitHub Profile" rel="noopener noreferrer" href="https://github.com/{{ . }}" target="_blank">
                 {{ partial "svg/github.svg" (dict "class" "widget-social__link-icon") }}
                 <span>GitHub</span>
             </a>
@@ -52,7 +52,7 @@
         {{- end }}
         {{- with .Site.Params.widgets.social.gitlab }}
         <div class="widget-social__item widget__item">
-            <a class="widget-social__link widget__link btn" title="Reach me on GitLab" rel="noopener noreferrer" href="https://gitlab.com/{{ . }}" target="_blank">
+            <a class="widget-social__link widget__link btn" title="My GitLab Profile" rel="noopener noreferrer" href="https://gitlab.com/{{ . }}" target="_blank">
                 {{ partial "svg/gitlab.svg" (dict "class" "widget-social__link-icon") }}
                 <span>GitLab</span>
             </a>
@@ -60,7 +60,7 @@
         {{- end }}
         {{- with .Site.Params.widgets.social.bitbucket }}
         <div class="widget-social__item widget__item">
-            <a class="widget-social__link widget__link btn" title="Reach me on Bitbucket" rel="noopener noreferrer" href="https://bitbucket.org/{{ . }}" target="_blank">
+            <a class="widget-social__link widget__link btn" title="My Bitbucket Profile" rel="noopener noreferrer" href="https://bitbucket.org/{{ . }}" target="_blank">
                 {{ partial "svg/bitbucket.svg" (dict "class" "widget-social__link-icon") }}
                 <span>Bitbucket</span>
             </a>
@@ -68,12 +68,29 @@
         {{- end }}
         {{- with .Site.Params.widgets.social.codewars }}
         <div class="widget-social__item widget__item">
-            <a class="widget-social__link widget__link btn" title="My Codewars" rel="noopener noreferrer" href="https://www.codewars.com/users/{{ . }}" target="_blank">
+            <a class="widget-social__link widget__link btn" title="My Codewars Profile" rel="noopener noreferrer" href="https://www.codewars.com/users/{{ . }}" target="_blank">
                 {{ partial "svg/codewars.svg" (dict "class" "widget-social__link-icon") }}
                 <span>Codewars</span>
             </a>
         </div>
-        {{- end }}        {{- with .Site.Params.widgets.social.email }}
+        {{- end }}
+        {{- with .Site.Params.widgets.social.hackerrank }}
+        <div class="widget-social__item widget__item">
+            <a class="widget-social__link widget__link btn" title="My Hackerrank Profile" rel="noopener noreferrer" href="https://www.hackerrank.com/{{ . }}" target="_blank">
+                {{ partial "svg/hackerrank.svg" (dict "class" "widget-social__link-icon") }}
+                <span>Hackerrank</span>
+            </a>
+        </div>
+        {{- end }}
+        {{- with .Site.Params.widgets.social.codersrank }}
+        <div class="widget-social__item widget__item">
+            <a class="widget-social__link widget__link btn" title="My Codersrank Profile" rel="noopener noreferrer" href="https://profile.codersrank.io/user/{{ . }}" target="_blank">
+                {{ partial "svg/codersrank.svg" (dict "class" "widget-social__link-icon") }}
+                <span>Codersrank</span>
+            </a>
+        </div>
+        {{- end }}
+        {{- with .Site.Params.widgets.social.email }}
         <div class="widget-social__item widget__item">
             <a class="widget-social__link widget__link btn" title="Contact me over Email" href="mailto:{{ . }}">
                 {{ partial "svg/email.svg" (dict "class" "widget-social__link-icon") }}
