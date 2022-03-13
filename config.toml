@@ -49,11 +49,12 @@ tags_counter = false    # Enable counter for each tag in "Tags" widget (disabled
 
 [Params.widgets.social]
 # facebook = ""
-twitter = "ubogdan"
+  twitter = "ubogdan"
 # instagram = ""
-linkedin = "67241434"
+  linkedin = "67241434"
 # telegram = ""
-github = "ubogdan"
+  github = "ubogdan"
 # gitlab = ""
 # bitbucket = ""
 # email = ""
+  codewars = "ubogdan"
