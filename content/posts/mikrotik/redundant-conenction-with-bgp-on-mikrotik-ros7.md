@@ -2,7 +2,7 @@
 title: "Setting Up a Redundant Internet Connection With BGP on Mikrotik ROs7"
 description: ""
 date: "2021-11-30T11:45:22+02:00"
-thumbnail: ""
+thumbnail: "images/mkt-ccr2004-16g-2s.png"
 categories:
 - "Networking"
 tags:
