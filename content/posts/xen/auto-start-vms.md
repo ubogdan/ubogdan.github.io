@@ -1,5 +1,5 @@
 ---
-title: "Setting Citrix XenServer 6.x/7.x to Auto-Start Virtual Machines"
+title: "Setting Citrix XenServer 6.x/7.x/8.x to Auto-Start Virtual Machines"
 description: ""
 date: "2022-03-15T22:07:50+02:00"
 thumbnail: "images/xen-center.png"
