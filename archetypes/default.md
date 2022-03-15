@@ -7,4 +7,7 @@ categories:
 - ""
 tags:
 - ""
+widgets:
+- "categories"
+- "taglist"
 ---
