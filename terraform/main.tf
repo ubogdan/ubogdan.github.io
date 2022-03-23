@@ -39,8 +39,17 @@ resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
   comment = "Identity used to allow Cloudfront access to S3"
 }
 
+data "aws_cloudfront_cache_policy" "cache_policy" {
+  name = "Managed-CachingOptimized"
+}
+
+data "aws_cloudfront_origin_request_policy" "request_policy" {
+  name = "Managed-CORS-S3Origin"
+}
+
 resource "aws_cloudfront_distribution" "website" {
   enabled             = true
+  is_ipv6_enabled     = true
   wait_for_deployment = false
   default_root_object = "index.html"
   aliases             = [var.site_name, "www.${var.site_name}"]
@@ -69,14 +78,6 @@ resource "aws_cloudfront_distribution" "website" {
     compress               = true
     viewer_protocol_policy = "redirect-to-https"
 
-    forwarded_values {
-      query_string = false
-      cookies {
-        forward = "none"
-      }
-      headers = length(var.cors_rules) > 0 ? ["Access-Control-Request-Headers", "Access-Control-Request-Method", "Origin"] : []
-    }
-
     // Request rewrite
     function_association {
       event_type   = "viewer-request"
@@ -88,6 +89,9 @@ resource "aws_cloudfront_distribution" "website" {
       event_type   = "viewer-response"
       function_arn = aws_cloudfront_function.cloudfront_viewer_response.arn
     }
+
+    cache_policy_id = data.aws_cloudfront_cache_policy.cache_policy.id
+    origin_request_policy_id = data.aws_cloudfront_origin_request_policy.request_policy.id
 
     min_ttl     = 0
     default_ttl = 86400
