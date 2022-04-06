@@ -57,4 +57,28 @@ curl <url> -o <outfile>
 
 --- truncated output ---
  
-```shell
+```
+
+
+Search cheatsheets with tile matching keyword `mark`
+
+```bash
+$ cheat -l mark
+title:                   file:                                                                     tags:
+markdown                 /home/user/.config/cheat/cheatsheets/community/markdown                 community
+vim-plugins/vim-markdown /home/user/.config/cheat/cheatsheets/community/vim-plugins/vim-markdown community
+
+``` 
+
+Display all available cheatsheets
+
+```bash
+cheat -l
+title:                    file:                                                                      tags:
+7z                        /home/user/.config/cheat/cheatsheets/community/7z                        community,compression
+ab                        /home/user/.config/cheat/cheatsheets/community/ab                        community
+acl                       /home/user/.config/cheat/cheatsheets/community/acl                       community
+
+--- truncated output ---
+
+```
