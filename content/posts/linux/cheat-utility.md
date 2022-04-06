@@ -4,15 +4,22 @@ description: ""
 date: "2022-04-01T20:33:39+03:00"
 thumbnail: ""
 categories:
-- ""
+- "linux"
 tags:
-- ""
+- "cheatsheet"
 widgets:
 - "categories"
 - "taglist"
 ---
 
-Installing the cheat utility
+It is often helpful to have a quick reference to a set of commands in a development environment.
+Some of them are hard to remember because they are not very common.
+
+<!--more--> 
+
+Fortunately, some guy identified this need and created a cheat-sheet utility for Linux commands called [cheat](https://github.com/cheat/cheat).
+
+Installing the utility
 
 ```bash
 wget -c https://github.com/cheat/cheat/releases/download/4.2.3/cheat-linux-amd64.gz -O - | gunzip -d > /tmp/cheat
@@ -38,7 +45,7 @@ Created config file: /home/user/.config/cheat/conf.yml
 Please read this file for advanced configuration information.
 ```
 
-Using the cheat utility
+Using the utility
 
 ```bash
 $ cheat curl
