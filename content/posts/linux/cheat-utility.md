@@ -1,10 +1,10 @@
 ---
-title: "Cheat-Utility"
+title: "Cheatsheet Utility"
 description: ""
 date: "2022-04-01T20:33:39+03:00"
 thumbnail: ""
 categories:
-- "linux"
+- "Linux"
 tags:
 - "cheatsheet"
 widgets:
