@@ -4,7 +4,7 @@ description: ""
 date: "2022-03-23T19:54:45+02:00"
 thumbnail: ""
 categories:
-- "windows"
+- "Windows"
 tags:
 - "exchange"
 widgets:
