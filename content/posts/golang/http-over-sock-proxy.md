@@ -128,3 +128,6 @@ func main() {
 }
 
 ```
+
+The code example is also available in go-playground repository in [http-socks5](https://github.com/ubogdan/go-playground/tree/main/http-socks5) folder.
+
