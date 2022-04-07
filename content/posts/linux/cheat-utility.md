@@ -21,7 +21,7 @@ Fortunately, some guy identified this need and created a cheat-sheet utility for
 
 Installing the utility
 
-```bash
+```shell
 wget -c https://github.com/cheat/cheat/releases/download/4.2.3/cheat-linux-amd64.gz -O - | gunzip -d > /tmp/cheat
 sudo mv /tmp/cheat /usr/local/bin/cheat
 sudo chmod +x /usr/local/bin/cheat
@@ -29,9 +29,8 @@ sudo chmod +x /usr/local/bin/cheat
 
 Initializing the application
 
-```bash
 ```shell
-$ cheat
+localhost $ cheat
 A config file was not found. Would you like to create one now? [Y/n]: y
 Would you like to download the community cheatsheets? [Y/n]: y
 Cloning into '/home/user/.config/cheat/cheatsheets/community'...
@@ -48,37 +47,32 @@ Please read this file for advanced configuration information.
 Using the utility
 
 ```bash
-$ cheat curl
+localhost $ cheat curl
 # To download a file:
 curl <url>
 
 # To download and rename a file:
 curl <url> -o <outfile>
-
 --- truncated output ---
- 
 ```
 
 
 Search cheatsheets with tile matching keyword `mark`
 
-```bash
-$ cheat -l mark
+```shell
+localhost $ cheat -l mark
 title:                   file:                                                                     tags:
 markdown                 /home/user/.config/cheat/cheatsheets/community/markdown                 community
 vim-plugins/vim-markdown /home/user/.config/cheat/cheatsheets/community/vim-plugins/vim-markdown community
-
 ``` 
 
 Display all available cheatsheets
 
-```bash
-cheat -l
+```shell
+localhost $ cheat -l
 title:                    file:                                                                      tags:
 7z                        /home/user/.config/cheat/cheatsheets/community/7z                        community,compression
 ab                        /home/user/.config/cheat/cheatsheets/community/ab                        community
 acl                       /home/user/.config/cheat/cheatsheets/community/acl                       community
-
 --- truncated output ---
-
 ```
