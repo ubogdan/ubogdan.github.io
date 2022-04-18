@@ -22,17 +22,6 @@ terraform {
 
 resource "aws_s3_bucket" "website" {
   bucket = var.site_name
-
-  dynamic "cors_rule" {
-    for_each = var.cors_rules
-    content {
-      allowed_headers = lookup(cors_rule.value, "allowed_headers", null)
-      allowed_methods = cors_rule.value.allowed_methods
-      allowed_origins = cors_rule.value.allowed_origins
-      expose_headers  = lookup(cors_rule.value, "expose_headers", null)
-      max_age_seconds = lookup(cors_rule.value, "max_age_seconds", null)
-    }
-  }
 }
 
 resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
@@ -72,8 +61,8 @@ resource "aws_cloudfront_distribution" "website" {
   }
 
   default_cache_behavior {
-    allowed_methods        = length(var.cors_rules) > 0 ? ["GET", "HEAD", "OPTIONS"] : ["GET", "HEAD"]
-    cached_methods         = length(var.cors_rules) > 0 ? ["GET", "HEAD", "OPTIONS"] : ["GET", "HEAD"]
+    allowed_methods        = ["GET", "HEAD"]
+    cached_methods         = ["GET", "HEAD"]
     target_origin_id       = "S3-${aws_s3_bucket.website.id}"
     compress               = true
     viewer_protocol_policy = "redirect-to-https"
@@ -90,12 +79,8 @@ resource "aws_cloudfront_distribution" "website" {
       function_arn = aws_cloudfront_function.cloudfront_viewer_response.arn
     }
 
-    cache_policy_id = data.aws_cloudfront_cache_policy.cache_policy.id
+    cache_policy_id          = data.aws_cloudfront_cache_policy.cache_policy.id
     origin_request_policy_id = data.aws_cloudfront_origin_request_policy.request_policy.id
-
-    min_ttl     = 0
-    default_ttl = 86400
-    max_ttl     = 31536000
   }
 
   custom_error_response {
@@ -133,19 +118,7 @@ resource "aws_cloudfront_function" "cloudfront_viewer_request" {
   runtime = "cloudfront-js-1.0"
   comment = "Rewrite request headers"
   publish = true
-  code    = <<EOT
-function handler(event) {
-    var request = event.request;
-    var uri = request.uri;
-
-    // Check whether the URI is missing a file name.
-    if (uri.endsWith('/')) {
-        request.uri += 'index.html';
-    }
-
-    return request;
-}
-EOT
+  code    = file("viewer_request.js")
 }
 
 resource "aws_cloudfront_function" "cloudfront_viewer_response" {
@@ -153,34 +126,7 @@ resource "aws_cloudfront_function" "cloudfront_viewer_response" {
   runtime = "cloudfront-js-1.0"
   comment = "Add security headers to viewer response"
   publish = true
-  code    = <<EOT
-function handler(event) {
-    var response = event.response;
-    var headers = response.headers;
-
-    // Force HSTS and Change server Name.
-    headers['server'] = { value: "Nginx"};
-    headers['strict-transport-security'] = { value: "max-age=63072000; includeSubdomains; preload"};
-
-    // Set HTTP security headers
-    if (headers['content-type'] && headers['content-type'].value == 'text/html') {
-      headers['content-security-policy'] = { value: "require-trusted-types-for 'script'; default-src 'none'; img-src 'self'; "+
-          "script-src https: 'sha256-SjP4DKbgzKbSIJ6khH2h4w68+MPNPvsOtujPhgl/Mh4=' 'sha256-sI9S14ompKIA+MyPxQ84ucUq3p+JKTvKD3E8qfKQvcc=' 'strict-dynamic' 'unsafe-inline'; "+
-          "script-src-elem 'self' https://www.google-analytics.com 'sha256-sI9S14ompKIA+MyPxQ84ucUq3p+JKTvKD3E8qfKQvcc=' 'sha256-SjP4DKbgzKbSIJ6khH2h4w68+MPNPvsOtujPhgl/Mh4='; "+
-          "style-src 'self' https://fonts.googleapis.com; "+
-          "font-src 'self' https://fonts.gstatic.com; "+
-          "connect-src https://www.google-analytics.com; "+
-          "form-action 'none'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
-      };
-      headers['x-content-type-options'] = { value: 'nosniff'};
-      headers['x-frame-options'] = {value: 'DENY'};
-      headers['x-xss-protection'] = {value: '1; mode=block'};
-    };
-
-    // Return the response to viewers
-    return response;
-}
-EOT
+  code    = file("viewer_response.js")
 }
 
 resource "aws_s3_bucket_public_access_block" "block_public_access" {

@@ -4,11 +4,6 @@ variable "site_name" {
   description = "The domain name for the website."
 }
 
-variable "cors_rules" {
-  type        = list(any)
-  description = "List of CORS rules tp be added to S3 bucket"
-  default     = []
-}
 variable "custom_orgin_headers" {
   type = list(object({
     name  = string
