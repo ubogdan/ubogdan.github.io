@@ -14,7 +14,7 @@ function handler(event) {
                 "script-src-elem 'self' https://www.googletagmanager.com 'sha256-SjP4DKbgzKbSIJ6khH2h4w68+MPNPvsOtujPhgl/Mh4=' 'sha256-4CQqINfLuP3nhL220h322geGof5a8+vo3u5unLM/2rw='; " +
                 "style-src 'self' https://fonts.googleapis.com; " +
                 "font-src 'self' https://fonts.gstatic.com; " +
-                "connect-src https://www.google-analytics.com https://www.googletagmanager.com; " +
+                "connect-src https://*.google-analytics.com https://www.googletagmanager.com; " +
                 "form-action 'none'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
         };
         headers['x-content-type-options'] = {value: 'nosniff'};
