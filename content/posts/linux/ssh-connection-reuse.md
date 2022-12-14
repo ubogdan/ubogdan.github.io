@@ -23,14 +23,14 @@ To use ControlMaster, you need to have the ssh client installed on your local ma
 ```shell
 Host *
     ControlMaster auto
-    ControlPath ~/.ssh/ssh_mux_%h_%p_%r
+    ControlPath ~/.ssh/mux-%h_%p_%r.sock
 ```
 
 If you open the first connection with -M:
 ```shell
 ssh -M user@server
 ``` 
-subsequent connections to $REMOTEHOST will "piggyback" on the connection established by the master ssh. Most noticeably, further authentication is not required. See man ssh_config under "ControlMaster" for more details.
+subsequent connections to remove host will "piggyback" on the connection established by the master ssh. Most noticeably, further authentication is not required. See man ssh_config under "ControlMaster" for more details.
 
 
 Once you have enabled ControlMaster, you can open a new terminal session to the remote server by running the ssh command again. 
