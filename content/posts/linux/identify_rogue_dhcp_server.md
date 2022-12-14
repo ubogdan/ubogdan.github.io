@@ -9,7 +9,6 @@ tags:
 - "linux"
 - "networking"
 - "dhcp"
-draft: true
 ---
 
 
