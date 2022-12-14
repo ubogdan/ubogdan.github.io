@@ -1,7 +1,7 @@
 ---
 title: "Identify and remove rogue dhcp server"
 description: ""
-date: "2021-08-12T00:13:55+03:00"
+date: "2021-08-01T00:13:55+03:00"
 thumbnail: ""
 categories:
 - "Linux"
