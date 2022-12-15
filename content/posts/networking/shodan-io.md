@@ -2,7 +2,7 @@
 title: "Shodan.io tips and tricks"
 description: ""
 date: "2022-12-15T23:00:00+03:00"
-thumbnail: ""
+thumbnail: "images/shodan.png"
 categories:
 - "Networking"
 tags:
