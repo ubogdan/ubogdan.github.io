@@ -13,7 +13,19 @@ tags:
 
 A logging middleware is a piece of software that sits between the incoming request and the final handler function in a web application. Its primary purpose is to log information about each request that comes through the application.
 
+
 <!--more-->
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Logging Middleware
+    participant Final Handler
+    Client ->> Logging Middleware: Request
+    Logging Middleware ->> Logging Middleware: Log Request Information
+    Logging Middleware ->> Final Handler: Pass Request
+    Final Handler ->> Client: Return Response
+```
 
 There are a few reasons why logging middleware can be useful:
 
