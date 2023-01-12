@@ -1,8 +1,11 @@
-output "secret_name" {
-  value = aws_iam_access_key.access_key.id
+output "cloudfront_distribution_id" {
+  value = aws_cloudfront_distribution.website.id
 }
 
-output "secret_access_key" {
-  sensitive = true
-  value     = aws_iam_access_key.access_key.secret
+output "assume_role_arn" {
+  value = aws_iam_role.pipeline.arn
+}
+
+output "bucket_name" {
+  value = aws_s3_bucket.website.bucket
 }

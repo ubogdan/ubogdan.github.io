@@ -5,6 +5,11 @@ on:
       - 'Makefile'
       - 'terraform/**'
 
+# permission can be added at job level or workflow level
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -12,26 +17,32 @@ jobs:
       - name: Git checkout
         uses: actions/checkout@v2
 
+      # Init Hugo theme
       - name: Update theme
         run: git submodule update --init
 
-      - name: Setup hugo
+      # Prerequisites
+      - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: "0.95.0"
 
+      # Build the site
       - name: Build
         run: hugo
 
+      # AWS credentials for GitHub Actions
+      # for more details visit https://github.com/marketplace/actions/configure-aws-credentials-action-for-github-actions
       - name: Set AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-central-1
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_ASSUME_ROLE }}
 
+      # Sync with S3 bucket
       - name: Upload content
-        run: aws s3 sync public/ s3://ubogdan.com --delete
+        run: aws s3 sync public/ s3://${{ secrets.AWS_BUCKET }} --delete
 
+      # Create Cloudfront invalidation
       - name: Cloudfront
-        run: aws cloudfront create-invalidation --distribution-id E36TAK5X2X8KES --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} --paths "/*"

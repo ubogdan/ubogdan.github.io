@@ -166,11 +166,68 @@ resource "aws_s3_bucket_policy" "resource_bucket_policy" {
   policy = data.aws_iam_policy_document.bucket_policy.json
 }
 
-resource "aws_iam_user" "pipeline" {
-  name = "github-actions-ubogdan.com-pipeline"
+// Pipeline OIDC auth setup
+locals {
+  urls = [
+    replace(var.provider_url, "https://", "")
+  ]
+}
+data "aws_caller_identity" "current" {}
+
+data "aws_iam_policy_document" "assume_role_with_oidc" {
+  dynamic "statement" {
+    for_each = local.urls
+
+    content {
+      effect  = "Allow"
+      actions = ["sts:AssumeRoleWithWebIdentity"]
+
+      principals {
+        type        = "Federated"
+        identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/${statement.value}"]
+      }
+
+      dynamic "condition" {
+        for_each = length(var.oidc_fully_qualified_subjects) > 0 ? local.urls : []
+
+        content {
+          test     = "StringEquals"
+          variable = "${statement.value}:sub"
+          values   = var.oidc_fully_qualified_subjects
+        }
+      }
+
+      dynamic "condition" {
+        for_each = length(var.oidc_subjects_with_wildcards) > 0 ? local.urls : []
+
+        content {
+          test     = "StringLike"
+          variable = "${statement.value}:sub"
+          values   = var.oidc_subjects_with_wildcards
+        }
+      }
+
+      dynamic "condition" {
+        for_each = length(var.oidc_fully_qualified_audiences) > 0 ? local.urls : []
+
+        content {
+          test     = "StringEquals"
+          variable = "${statement.value}:aud"
+          values   = var.oidc_fully_qualified_audiences
+        }
+      }
+    }
+  }
 }
 
-data "aws_iam_policy_document" "bucket" {
+resource "aws_iam_role" "pipeline" {
+  name        = "gha-pipeline-${var.site_name}"
+  description = "OIDC role for GitHub Actions"
+  max_session_duration = var.max_session_duration
+ assume_role_policy = data.aws_iam_policy_document.assume_role_with_oidc.json
+}
+
+data "aws_iam_policy_document" "pipeline" {
   statement {
     actions = [
       "s3:ListBucket",
@@ -182,15 +239,7 @@ data "aws_iam_policy_document" "bucket" {
     effect    = "Allow"
     resources = [aws_s3_bucket.website.arn, "${aws_s3_bucket.website.arn}/*"]
   }
-}
 
-resource "aws_iam_user_policy" "bucket_policy" {
-  name   = "PipelineBucketAccess"
-  user   = aws_iam_user.pipeline.name
-  policy = data.aws_iam_policy_document.bucket.json
-}
-
-data "aws_iam_policy_document" "cloudfront" {
   statement {
     actions = [
       "cloudfront:CreateInvalidation",
@@ -201,12 +250,13 @@ data "aws_iam_policy_document" "cloudfront" {
   }
 }
 
-resource "aws_iam_user_policy" "cloudfront_policy" {
-  name   = "PipelineCloudFrontAccess"
-  user   = aws_iam_user.pipeline.name
-  policy = data.aws_iam_policy_document.cloudfront.json
+resource "aws_iam_policy" "pipeline" {
+  name        = "gha-pipeline-${var.site_name}"
+  description = "OIDC policy for GitHub Actions"
+  policy      = data.aws_iam_policy_document.pipeline.json
 }
 
-resource "aws_iam_access_key" "access_key" {
-  user = aws_iam_user.pipeline.name
+resource "aws_iam_role_policy_attachment" "pipeline" {
+  role       = aws_iam_role.pipeline.name
+  policy_arn = aws_iam_policy.pipeline.arn
 }
