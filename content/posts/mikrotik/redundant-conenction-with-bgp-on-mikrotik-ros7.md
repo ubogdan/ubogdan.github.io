@@ -49,7 +49,7 @@ add name=LAN
 add bridge=LAN interface=ether1
 add bridge=LAN interface=ether2
 ```
-On this bridge we will assing the public subnet alocatd by the ISP.
+On this bridge we will assign the public subnet allocated by the ISP.
 ```yaml
 /ip address
 add address=216.128.55.97/28 comment=LAN interface=LAN network=216.128.55.96
