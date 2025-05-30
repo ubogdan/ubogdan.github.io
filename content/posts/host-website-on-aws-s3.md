@@ -110,7 +110,7 @@ resource "aws_s3_bucket_policy" "resource_bucket_policy" {
 ```
 
 ## terraform.tfvars
-  Finally, we neet to chose a fqdn name for our website.
+  Finally, we need to choose a FQDN name for our website.
 
 ```terraform
 # terraform.tfvars
