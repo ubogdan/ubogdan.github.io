@@ -81,3 +81,9 @@ func main() {
 	http.ListenAndServe(":8080",r)
 }
 ```
+
+## Read More
+
+For more information about production-ready HTTP middleware patterns in Go, check out:
+
+**[Writing a Logger Middleware for Use with Mux Router](https://ubogdan.com/2025/02/building-production-ready-http-logging-middleware-for-gos-mux-router/)** If you want to learn more about writing a logger middleware for use with Mux router.
