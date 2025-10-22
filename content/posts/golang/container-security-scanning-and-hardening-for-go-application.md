@@ -5,6 +5,7 @@ tags: [ "docker", "golang", "scanning", "security"]
 categories: [ "SecOps", "Programming"]
 description: "Implement security scanning, vulnerability management, and hardening for Go container images."
 series: "Security Operations"
+draft: true
 ---
 
 # Container Security Scanning and Hardening for Go Applications

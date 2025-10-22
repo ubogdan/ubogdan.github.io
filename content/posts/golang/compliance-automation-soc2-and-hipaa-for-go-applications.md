@@ -5,6 +5,7 @@ tags: ["security", "golang"]
 categories: ["SecOps", "Programming"]
 description: "Automate compliance requirements and audit trails for Go applications meeting SOC2 and HIPAA standards."
 series: "Security Operations"
+draft: true
 ---
 
 # Compliance Automation: SOC2 and HIPAA for Go Applications
