@@ -5,6 +5,7 @@ tags: ["api-security", "golang", "jwt", "rbac", "authentication", "authorization
 categories: ["SecOps"]
 description: "Build production-ready API security with practical examples of rate limiting, JWT authentication, and role-based access control in Go."
 series: "Security Operations"
+thumbnail: "images/api-security-rl-auth-rbac.png"
 ---
 
 ## Introduction
