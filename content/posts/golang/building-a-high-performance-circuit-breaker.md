@@ -5,6 +5,7 @@ tags: ["circuit-breaker", "golang", "prometheus"]
 categories: ["Performance Engineering"]
 description: "Design and implement a production-ready, lock-free circuit breaker capable of handling 100k+ requests/second with Prometheus metrics integration."
 series: "Performance Engineering"
+thumbnail: "images/hp-circuit-breaker.png"
 ---
 
 ## Introduction
