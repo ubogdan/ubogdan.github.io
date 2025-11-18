@@ -5,6 +5,7 @@ tags: ["circuit-breaker", "fault-tolerance", "golang", "resilience", "patterns"]
 categories: ["SRE"]
 description: "Build fault-tolerant Go services using circuit breaker pattern to prevent cascading failures."
 series: "Site Reliability Engineering"
+thumbnail: "images/circuit-breaker-pattern.png"
 ---
 
 

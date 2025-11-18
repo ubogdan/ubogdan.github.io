@@ -2,7 +2,7 @@
 title: "Building Production-Ready HTTP Logging Middleware for Go's Mux Router"
 description: ""
 date: "2025-02-21T22:49:20+03:00"
-thumbnail: ""
+thumbnail: "images/http-logging-middleware.png"
 categories: ["Programming"]
 tags: ["golang", "middleware", "programming"]
 ---

@@ -2,7 +2,7 @@
 title: "Building a High-Performance Lock-Free Circuit Breaker in Go"
 date: 2025-11-02T10:30:00+02:00
 tags: ["circuit-breaker", "golang", "prometheus"]
-categories: ["Performance Engineering"]
+categories: ["Programming", "Performance Engineering"]
 description: "Design and implement a production-ready, lock-free circuit breaker capable of handling 100k+ requests/second with Prometheus metrics integration."
 series: "Performance Engineering"
 thumbnail: "images/hp-circuit-breaker.png"
