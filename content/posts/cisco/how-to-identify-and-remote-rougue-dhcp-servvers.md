@@ -8,8 +8,6 @@ tags: [ "DHCP", "Networking" ]
 widgets: ["categories", "taglist"]
 ---
 
-# How to Identify and Remove Rogue DHCP Servers from Your Network
-
 Network administrators face numerous challenges in maintaining a secure and stable infrastructure, but few are as insidious as rogue DHCP servers. These unauthorized servers can wreak havoc on your network, causing connectivity issues, security breaches, and hours of troubleshooting headaches. Whether introduced maliciously by an attacker or accidentally by a well-meaning employee who plugged in their home router, rogue DHCP servers represent a serious threat that demands immediate attention.
 
 The Dynamic Host Configuration Protocol (DHCP) is fundamental to modern networking, automatically assigning IP addresses and network configuration to devices. When a rogue DHCP server enters your network, it competes with your legitimate server to answer DHCP requests. This creates a race condition where some devices receive correct configuration while others get incorrect settings, leading to intermittent connectivity problems that can be extremely difficult to diagnose. In worst-case scenarios, attackers can use rogue DHCP servers to redirect traffic through compromised systems, enabling man-in-the-middle attacks and data exfiltration.
