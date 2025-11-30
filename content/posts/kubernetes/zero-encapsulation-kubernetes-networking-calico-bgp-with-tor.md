@@ -2,7 +2,7 @@
 title: "Zero-Encapsulation Kubernetes Networking: Calico BGP with ToR Switch Integration"
 date: 2025-11-30T23:29:06+02:00
 tags: [ "bgp", "kubernetes"]
-categories: ["Networking"]
+categories: ["Networking", "DevOps"]
 thumbnail: "images/calico-bgp-zero-encapsulation.png"
 description: "Achieve maximum network performance by configuring Calico to announce node IPs directly to Top-of-Rack switches using BGP, eliminating overlay network overhead entirely."
 series: "Kubernetes Mastery"
