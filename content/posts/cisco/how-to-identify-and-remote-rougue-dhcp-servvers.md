@@ -2,7 +2,7 @@
 title: "How to Identify and Remove Rogue DHCP Servers from Your Network"
 description: ""
 date: "2024-02-20T21:31:58+03:00"
-thumbnail: ""
+thumbnail: "images/rogue-dhcp-servers.png"
 categories: ["Networking"]
 tags: [ "DHCP", "Networking" ]
 widgets: ["categories", "taglist"]
