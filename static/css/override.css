@@ -1,3 +1,46 @@
 .container {
     max-width: 1360px;
 }
+
+#onetrust-group-container {
+    top: 100%;
+    transform: translate(-0%, -100%);
+    position: fixed;
+    height: auto;
+    display: none;
+    background-color: #ffffff;
+    box-shadow: 0 32px 68px rgba(0, 0, 0, .3);
+    z-index: 2147483631;
+    max-width: 100vw;
+    min-width: 100vw;
+    padding: 24px;
+    transition-property: transform, opacity, top;
+    width: 100vw;
+}
+
+#onetrust-policy {
+    margin: 0 auto;
+    width: 60%;
+}
+#onetrust-btn-container {
+    margin-top: 4.25em;
+}
+
+#onetrust-banner-sdk #onetrust-policy {
+    margin: 1.25em 0 .625em 2em;
+    overflow: hidden;
+}
+
+#onetrust-group-container #onetrust-accept-btn-handler {
+    border-color: #276D9B;
+}
+
+#onetrust-group-container #onetrust-reject-all-handler,
+#onetrust-group-container #onetrust-privacy-handler {
+    background-color: #276D9B;
+    border-color: #276D9B;
+    color: #FFFFFF;
+}
+
+
+

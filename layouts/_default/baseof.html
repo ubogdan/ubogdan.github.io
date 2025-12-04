@@ -36,15 +36,9 @@
 	{{- end }}
 
 	<link rel="shortcut icon" href="{{ "favicon.ico" | relURL }}">
-	{{- if not .Site.IsServer }}
-		{{- if hasPrefix .Site.GoogleAnalytics "G-" }}
-		{{ template "_internal/google_analytics.html" . }}
-		{{- else }}
-		{{ template "_internal/google_analytics_async.html" . }}
-		{{- end }}
-	{{- end }}
 </head>
 <body class="body">
+    {{- template "partials/cookie-consent.html" . }}
 	<div class="container container--outer">
 		{{ block "header" . }}{{ partial "header.html" . }}{{ end }}
 		<div class="wrapper flex">
@@ -67,10 +61,4 @@
 {{- end }}
 {{- partial "mathjax.html" . -}}
 </body>
-{{ if .Page.Store.Get "hasMermaid-disabled" }}
-<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-<script>
-	mermaid.initialize({ startOnLoad: true });
-</script>
-{{ end }}
 </html>
