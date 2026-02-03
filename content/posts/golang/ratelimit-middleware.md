@@ -1,17 +1,14 @@
 ---
 title: "IP Based rate-limit middleware using go.uber.org/ratelimit"
-description: ""
-date: "2021-09-04T02:06:57+03:00"
-thumbnail: ""
+date: 2021-09-04T02:06:57+03:00
+lastmod: 2026-02-03
+description: "If you're running a HTTP server and want to rate limit user requests, and most of the frameworks are providing their own middleware."
 categories:
-- "Programming"
+  - "Programming"
 tags:
-- "golang"
-- "middleware"
-- "programming"
-widgets:
-- "categories"
-- "taglist"
+  - "golang"
+  - "middleware"
+  - "programming"
 ---
 
 If you're running a HTTP server and want to rate limit user requests, and most of the frameworks are providing their own middleware.

@@ -1,16 +1,14 @@
 ---
 title: "Shodan.io tips and tricks"
-description: ""
-date: "2022-12-15T23:00:00+03:00"
+date: 2022-12-15T23:00:00+03:00
+lastmod: 2026-02-03
 thumbnail: "images/shodan.png"
+description: "Shodan is a search engine for the internet of things (IoT). It allows users to search for specific types of internet-connected devices, such as security..."
 categories:
-- "Networking"
+  - "Networking"
 tags:
-- "Discovery"
-- "Networking"
-widgets:
-- "categories"
-- "taglist"
+  - "Discovery"
+  - "Networking"
 ---
 
 Shodan is a search engine for the internet of things (IoT). It allows users to search for specific types of internet-connected devices, such as security cameras or industrial control systems, and view information about them, such as their location, their internet protocol (IP) address, and their manufacturer. 
@@ -102,6 +100,6 @@ Once users have added filters to their search query, they can click the "Search"
 | ----------------- | ----------------------------------------------------------- | -------- |
 | **telnet.option** | Search all the options                                      | string   |
 | **telnet.do**     | The server requests the client do support these options     | string   |
-| **telnet.dont**   | The server requests the client to not support these options | string   |
+| **telnet.don't**   | The server requests the client to not support these options | string   |
 | **telnet.will**   | The server supports these options                           | string   |
-| **telnet.wont**   | The server doesnt support these options                     | string   |
+| **telnet.won't**   | The server doesn't support these options                     | string   |

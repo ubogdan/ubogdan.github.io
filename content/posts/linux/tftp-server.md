@@ -1,16 +1,13 @@
 ---
 title: "Install and configure a tftp server"
-description: ""
-date: "2021-09-06T18:27:37+03:00"
-thumbnail: ""
+date: 2021-09-06T18:27:37+03:00
+lastmod: 2026-02-03
+description: "TFTP (Trivial File Transfer Protocol) is a simplified version of FTP (File Transfer Protocol). It was designed to be easy and simple. TFTP leaves out many..."
 categories:
-- "Linux"
+  - "Linux"
 tags:
-- "linux"
-- "tftp"
-widgets:
-- "categories"
-- "taglist"
+  - "linux"
+  - "tftp"
 ---
 
 TFTP (Trivial File Transfer Protocol) is a simplified version of FTP (File Transfer Protocol). It was designed to be easy and simple. TFTP leaves out many authentication features of FTP and it runs on UDP port 69. As it is very lightweight, it is still used for different purposes.

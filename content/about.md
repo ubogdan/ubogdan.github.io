@@ -2,8 +2,6 @@
 title: "About"
 description: ""
 date: "2021-06-25T21:08:13+03:00"
-thumbnail: ""
-#menu: ["footer"]
 sidebar: false
 authorbox: false
 layout: "about"

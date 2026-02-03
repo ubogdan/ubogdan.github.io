@@ -1,15 +1,12 @@
 ---
 title: "Improve ssh session performance by reusing an existing connection to a remote SSH server"
-description: ""
-date: "2022-12-12T23:50:00+03:00"
-thumbnail: ""
+date: 2022-12-12T23:50:00+03:00
+lastmod: 2026-02-03
+description: "When working on a remote server, it is often necessary to establish multiple Secure Shell (SSH) connections to the same host. This can be time-consuming and..."
 categories:
-- "Linux"
+  - "Linux"
 tags:
-- "ssh"
-widgets:
-- "categories"
-- "taglist"
+  - "ssh"
 ---
 
 When working on a remote server, it is often necessary to establish multiple Secure Shell (SSH) connections to the same host. This can be time-consuming and resource-intensive, especially if you are working on a slow or congested network. 

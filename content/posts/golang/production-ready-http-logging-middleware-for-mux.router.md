@@ -1,10 +1,15 @@
 ---
 title: "Building Production-Ready HTTP Logging Middleware for Go's Mux Router"
-description: ""
-date: "2025-02-21T22:49:20+03:00"
+date: 2025-02-21T22:49:20+03:00
+lastmod: 2026-02-03
 thumbnail: "images/http-logging-middleware.png"
-categories: ["Programming"]
-tags: ["golang", "middleware", "programming"]
+description: "Observability is the cornerstone of modern web applications. When your API starts experiencing issues at 3 AM, comprehensive logging can mean the difference..."
+categories:
+  - Programming
+tags:
+  - golang
+  - middleware
+  - programming
 ---
 
 Observability is the cornerstone of modern web applications. When your API starts experiencing issues at 3 AM, comprehensive logging can mean the difference between a quick fix and hours of frustrated debugging. In this guide, we'll build a production-grade HTTP logging middleware for Gorilla Mux that goes beyond simple request logging to provide actionable insights into your application's behavior.

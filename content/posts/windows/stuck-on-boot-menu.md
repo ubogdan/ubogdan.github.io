@@ -1,15 +1,13 @@
 ---
 title: "Fixed: Windows 2019 stuck on boot menu"
-description: ""
-date: "2021-11-23T22:39:07+02:00"
+date: 2021-11-23T22:39:07+02:00
+lastmod: 2026-02-03
 thumbnail: "/images/win2k9-bootloader.png"
+description: "We have a couple of issues with Windows 2019 refusing to boot after installing Hyper-V role and performing Windows updates."
 categories:
-- "Windows"
+  - "Windows"
 tags:
-- "windows"
-widgets:
-- "categories"
-- "taglist"
+  - "windows"
 ---
 
 We have a couple of issues with Windows 2019 refusing to boot after installing Hyper-V role and performing Windows updates.

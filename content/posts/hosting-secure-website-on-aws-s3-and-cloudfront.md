@@ -1,16 +1,15 @@
 ---
 title: "Using Terraform to host a Secure Static Website with AWS S3 and Cloudfront"
-date: "2021-06-25T8:00:00+03:00"
+date: 2021-06-25T8:00:00+03:00
+lastmod: 2026-02-03
+description: "By the time you finish reading this article, you will know how to get your static websites up and running securely on AWS using Terraform. This can be a..."
 categories:
-- "Terraform"
-- "DevOps"
-- "Amazon Web Services"
+  - "Terraform"
+  - "DevOps"
+  - "Amazon Web Services"
 tags:
-- "terraform"
-- "aws"
-widgets:
-- "categories"
-- "taglist"
+  - "terraform"
+  - "aws"
 ---
 
 By the time you finish reading this article, you will know how to get your static websites up and running securely on AWS using Terraform. This can be a very cost-effective way of hosting a website. 
@@ -31,12 +30,12 @@ provider "aws" {
 }
 
 terraform {
-  required_version = ">= 0.14"
+  required_version = ">= 1.0"
 
   required_providers {
     aws = {
       source = "hashicorp/aws"
-      version = "~> 3.0"
+      version = "~> 5.0"
     }
   }
 
@@ -49,12 +48,12 @@ terraform {
 Here we are specifying the version of Terraform that we are using as well as the version of the AWS provider. This is to ensure that any future breaking changes to Terraform or the AWS provider does not stop our scripts from working.
 
 
-## vars.tf
+## var.tf
 
 In this file, we define the variables that we are going to use. 
 
 ```terraform
-# vars.tf
+# var.tf
 
 variable "site_name" {
   type = string
@@ -87,7 +86,7 @@ In this file, we are going to set up the S3 bucket that will store our static we
 # s3.tf
 
 resource "aws_s3_bucket" "website" {
-  bucket = vars.bucket_name
+  bucket = var.bucket_name
 }
 
 resource "aws_s3_bucket_public_access_block" "block_public_access" {

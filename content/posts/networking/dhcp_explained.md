@@ -1,16 +1,13 @@
 ---
 title: "DHCP explained"
-description: ""
-date: "2021-08-27T21:53:11+03:00"
-thumbnail: ""
+date: 2021-08-27T21:53:11+03:00
+lastmod: 2026-02-03
+description: "DHCP stands for dynamic host configuration protocol and is a network protocol used on IP networks where a DHCP server automatically assigns an IP address..."
 categories:
-- "Networking"
+  - "Networking"
 tags:
-- "DHCP"
-- "Networking"
-widgets:
-- "categories"
-- "taglist"
+  - "DHCP"
+  - "Networking"
 ---
 
 DHCP stands for dynamic host configuration protocol and is a network protocol used on IP networks where a DHCP server automatically assigns an IP address and other information to each host on the network so they can communicate efficiently with other endpoints.

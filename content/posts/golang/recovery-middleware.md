@@ -1,24 +1,30 @@
 ---
 title: "HTTP Panic Recover Middleware"
-description: ""
-date: "2022-02-23T21:46:46+02:00"
-thumbnail: ""
+date: 2022-02-23T21:46:46+02:00
+lastmod: 2026-02-03
+description: "No matter if you are creating a simple rest service or a complex one, you will need to handle panics in order to provide good resiliency."
 categories:
-- "Programming"
+  - "Programming"
 tags:
-- "golang"
-- "middleware"
-- "programming"
-widgets:
-- "categories"
-- "taglist"
+  - "golang"
+  - "middleware"
+  - "programming"
 ---
 
-No mater if you are creating a simple rest service or a complex one, you will need to handle panics in order to provide a good resiliency.
+No matter if you are creating a simple REST service or a complex one, you will need to handle panics to provide good resiliency and stability. Without panic recovery mechanisms in place, an uncaught panic in your HTTP handler will crash your entire server, leaving your clients without service and no meaningful error response.
 
-<!--more--> 
+<!--more-->
 
-The middleware has a similar behavior to the panic recovery mechanism example from the go.dev [blog](https://go.dev/blog/defer-panic-and-recover).
+## Why Panic Recovery Matters
+
+In production systems, panics can occur due to unexpected edge cases, race conditions, or programming errors that slip through testing. Without recovery middleware, a single panic in one request handler will bring down your entire application server, affecting all users. By implementing a recovery middleware, you can gracefully handle these situations, log errors with full context, and return appropriate error responses to clients.
+
+## Understanding Go's Panic Recovery Mechanism
+
+The Go runtime provides a built-in mechanism for recovering from panics through the `defer` statement and `recover()` function. This concept is similar to try-catch blocks in other languages, but implemented using Go's unique control flow. When combined with middleware patterns, this becomes a powerful tool for building resilient APIs.
+
+Here's the basic principle from the go.dev [blog](https://go.dev/blog/defer-panic-and-recover):
+
 ```go
 func main() {
     defer func() {
@@ -30,13 +36,21 @@ func main() {
 }
 ```
 
-If the function panics, the defer function will be called and the recover function will return the runtime error. 
+If the function panics, the deferred function will always be called and the `recover()` function will return the runtime error. This allows you to execute cleanup code and prevent the panic from propagating further up the call stack.
 
-As example, if your code is trying to access the 3'rd position of an empty slice will return the following error: "runtime error: index out of range [3] with length 0".
+## Common Panic Scenarios
 
-For sure this information is not enough, and we may want to know where in the code the panic has been triggered.
+For example, if your code tries to access the 3rd position of an empty slice, it will return: `"runtime error: index out of range [3] with length 0"`. 
 
-For this we will have to call the stack function to get the stack trace.
+However, just knowing the error message isn't always sufficient for debugging in production. You also need to know exactly where in your codebase the panic occurred—which function called which function, and so on. This is where stack traces become invaluable for rapid diagnosis and monitoring.
+
+## Capturing the Stack Trace
+
+To properly diagnose issues in production, we need to capture the full stack trace using the `runtime.Stack()` function. This gives you the complete call chain that led to the panic, making it exponentially easier to identify and fix the underlying issue. Stack traces should be logged in your monitoring system for later analysis.
+
+## Implementation: Building the Recovery Middleware
+
+Below is a production-ready implementation of panic recovery middleware that captures the full stack trace and logs it along with the panic message:
 
 ```go
 package middlewares
@@ -58,7 +72,7 @@ func Recover(next http.Handler) http.Handler {
 				stack = stack[:length]
 				log.Printf("[PANIC RECOVER] %v %s\n", err, stack[:length])
 				
-				//	Send internal server error to the client
+				// Send internal server error to the client
 				w.Header().Set("Content-Type", "application/json")
 				w.WriteHeader(http.StatusInternalServerError)
 				w.Write([]byte(`{"error": "There was an internal server error"}`))
@@ -70,7 +84,17 @@ func Recover(next http.Handler) http.Handler {
 }
 ```
 
-Example using the middleware with mux router and standard http server.
+### How the Middleware Works
+
+1. **Defer Setup**: The `defer` statement ensures the recovery block executes when the handler function exits, whether normally or via panic
+2. **Stack Capture**: `runtime.Stack()` captures all goroutine stacks with full file paths and line numbers
+3. **Logging**: The panic message and stack trace are logged for debugging and monitoring
+4. **Client Response**: Instead of crashing, we return a clean JSON error response with an appropriate HTTP status code
+
+## Integration with Your Router
+
+Example using the middleware with gorilla/mux router and standard http server:
+
 ```golang
 package main
 
@@ -83,10 +107,29 @@ import (
 func main() {
 	r := mux.NewRouter()
 
+	// Apply recovery middleware to all routes
 	r.Use(
 		middleware.Recover,
 	)
 
-	http.ListenAndServe(":8080",r)
+	// Add your route handlers here
+	r.HandleFunc("/api/users", handleGetUsers).Methods("GET")
+	r.HandleFunc("/api/data", handleGetData).Methods("GET")
+
+	http.ListenAndServe(":8080", r)
 }
 ```
+
+## Best Practices for Production
+
+- **Always log the full stack trace** for debugging purposes in your monitoring system
+- **Return consistent error responses** to clients to avoid exposing internal implementation details
+- **Consider using structured logging** (like logrus or zap) for better log aggregation and searchability
+- **Monitor panic occurrences** in your logging system to catch recurring issues before they escalate
+- **Keep stack trace size reasonable** (4KB is sufficient for most cases and prevents memory issues)
+- **Don't ignore recovered panics** - they indicate bugs that need fixing, not just hiding
+- **Test your panic recovery** by intentionally triggering panics in your test suite
+
+## Conclusion
+
+This recovery middleware is essential for building robust Go web services that can handle unexpected errors gracefully. By combining defer/recover mechanics with proper logging and error handling, you can ensure that your application stays running and provides visibility into production issues. The combination of captured stack traces and proper error responses gives you the best of both worlds: server stability and diagnostic capability.

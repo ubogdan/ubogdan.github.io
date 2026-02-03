@@ -1,11 +1,14 @@
 ---
 title: "How to Identify and Remove Rogue DHCP Servers from Your Network"
-description: ""
-date: "2024-02-20T21:31:58+03:00"
+date: 2024-02-20T21:31:58+03:00
+lastmod: 2026-02-03
 thumbnail: "images/rogue-dhcp-servers.png"
-categories: ["Networking"]
-tags: [ "DHCP", "Networking" ]
-widgets: ["categories", "taglist"]
+description: "Network administrators face numerous challenges in maintaining a secure and stable infrastructure, but few are as insidious as rogue DHCP servers. These..."
+categories:
+  - Networking
+tags:
+  - DHCP
+  - Networking
 ---
 
 Network administrators face numerous challenges in maintaining a secure and stable infrastructure, but few are as insidious as rogue DHCP servers. These unauthorized servers can wreak havoc on your network, causing connectivity issues, security breaches, and hours of troubleshooting headaches. Whether introduced maliciously by an attacker or accidentally by a well-meaning employee who plugged in their home router, rogue DHCP servers represent a serious threat that demands immediate attention.
@@ -92,7 +95,7 @@ This command broadcasts a DHCP discovery request and displays all servers that r
 
 When you run the detection command, nmap will display results similar to this:
 
-```
+```text
 Pre-scan script results:
 | broadcast-dhcp-discover:
 |   Response 1 of 2:
@@ -166,7 +169,7 @@ sudo nmap -sP 192.168.1.50 | grep "MAC Address"
 
 Replace `192.168.1.50` with your rogue server's IP address. This returns output like:
 
-```
+```text
 MAC Address: 00:11:22:33:44:55 (Cisco Systems)
 ```
 
@@ -177,17 +180,17 @@ The manufacturer information (Organizationally Unique Identifier or OUI) provide
 Most managed network switches maintain MAC address tables that show which MAC addresses are learned on which physical ports:
 
 **Cisco IOS:**
-```
+```text
 show mac address-table address 0011.2233.4455
 ```
 
 **HP ProCurve:**
-```
+```text
 show mac-address 00:11:22:33:44:55
 ```
 
 **Dell/Force10:**
-```
+```text
 show mac-address-table address 0011.2233.4455
 ```
 
@@ -202,7 +205,7 @@ sudo lldpctl
 ```
 
 Or on Cisco switches:
-```
+```text
 show cdp neighbors detail
 ```
 
@@ -220,7 +223,7 @@ After identifying and locating the rogue server, you need to remove it quickly w
 
 The fastest method to stop a rogue DHCP server is disabling the network switch port it's connected to:
 
-```
+```text
 # Cisco IOS
 interface GigabitEthernet1/0/24
 shutdown
@@ -294,7 +297,7 @@ Implementing comprehensive DHCP security measures prevents rogue servers from ca
 
 DHCP snooping is a Layer 2 security feature that validates DHCP messages and builds a binding table of legitimate DHCP assignments. Configure it on all access switches:
 
-```
+```text
 # Cisco IOS example
 ip dhcp snooping
 ip dhcp snooping vlan 10,20,30

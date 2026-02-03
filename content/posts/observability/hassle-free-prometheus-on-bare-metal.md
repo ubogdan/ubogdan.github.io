@@ -1,10 +1,13 @@
 ---
 title: "Hassle-Free Prometheus on Bare Metal"
-description: ""
-date: "2025-10-21T10:53:11+03:00"
-thumbnail: ""
-categories: [ "Observability" ]
-tags: ["golang", "prometheus"]
+date: 2025-10-21T10:53:11+03:00
+lastmod: 2026-02-03
+description: "Monitoring bare metal infrastructure with Prometheus is notoriously challenging. Unlike cloud environments with built-in service discovery, bare metal..."
+categories:
+  - Observability
+tags:
+  - golang
+  - prometheus
 ---
 
 # Hassle-Free Prometheus on Bare Metal

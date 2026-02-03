@@ -1,17 +1,14 @@
 ---
 title: "HTTP request tracing middleware"
-description: ""
-date: "2021-09-28T20:21:33+03:00"
-thumbnail: ""
+date: 2021-09-28T20:21:33+03:00
+lastmod: 2026-02-03
+description: "Request-based tracing provides a way to determine what exactly is happening with your requests and why."
 categories:
-- "Programming"
+  - "Programming"
 tags:
-- "golang"
-- "middleware"
-- "programming"
-widgets:
-- "categories"
-- "taglist"
+  - "golang"
+  - "middleware"
+  - "programming"
 ---
 
 Request-based tracing provides a way to determine what exactly is happening with your requests and why.

@@ -1,16 +1,13 @@
 ---
 title: "Connect to remote website using socks5 proxy"
-description: ""
-date: "2021-10-13T23:57:09+03:00"
-thumbnail: ""
+date: 2021-10-13T23:57:09+03:00
+lastmod: 2026-02-03
+description: "Honeypots are a security tool that is used to protect networks and systems from malicious attacks. They are designed to mimic the behavior of a real network..."
 categories:
-- "Programming"
+  - "Programming"
 tags:
-- "programming"
-- "golang"
-widgets:
-- "categories"
-- "taglist"
+  - "programming"
+  - "golang"
 ---
 
 Honeypots are a security tool that is used to protect networks and systems from malicious attacks. They are designed to mimic the behavior of a real network or system, making them appear attractive to potential attackers. When an attacker targets a honeypot, they are led to believe that they have successfully breached a valuable asset, when in reality, they are interacting with a decoy. Honeypots are a valuable tool for security professionals, as they can provide valuable information about an attacker's tactics and motivations, as well as alerting the security team to potential threats.

@@ -1,10 +1,14 @@
 ---
 title: "Building Production-Ready Rate Limiting Middleware in Go"
-description: ""
-date: "2023-09-28T20:36:54+03:00"
-thumbnail: ""
-categories: ["Programming" ]
-tags: ["golang" , "middleware", "programming" ]
+date: 2023-09-28T20:36:54+03:00
+lastmod: 2026-02-03
+description: "Rate limiting is your application's first line of defense against abuse, whether from malicious actors launching denial-of-service attacks, buggy clients..."
+categories:
+  - Programming
+tags:
+  - golang
+  - middleware
+  - programming
 ---
 
 Rate limiting is your application's first line of defense against abuse, whether from malicious actors launching denial-of-service attacks, buggy clients stuck in retry loops, or legitimate users inadvertently overwhelming your system. Without proper rate limiting, a single misbehaving client can bring down your entire service, impacting all users and potentially costing your business significant revenue and reputation.

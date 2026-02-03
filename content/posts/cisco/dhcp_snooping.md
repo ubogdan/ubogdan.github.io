@@ -1,11 +1,13 @@
 ---
 title: "Enable DHCP snooping on SG3XX layer 3 switches"
-description: ""
-date: "2021-08-20T21:31:58+03:00"
-thumbnail: ""
-categories: ["Networking"]
-tags: [ "DHCP", "Networking" ]
-widgets: ["categories", "taglist"]
+date: 2021-08-20T21:31:58+03:00
+lastmod: 2026-02-03
+description: "DHCP snooping is a security feature that acts as a firewall between untrusted hosts and trusted DHCP servers."
+categories:
+  - Networking
+tags:
+  - DHCP
+  - Networking
 ---
 
 DHCP snooping is a security feature that acts as a firewall between untrusted hosts and trusted DHCP servers.

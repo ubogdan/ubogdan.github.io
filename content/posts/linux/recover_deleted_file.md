@@ -1,16 +1,13 @@
 ---
 title: "How to recover a deleted file when a process keeps it open."
-description: ""
-date: "2021-07-22T20:44:10+03:00"
-thumbnail: ""
+date: 2021-07-22T20:44:10+03:00
+lastmod: 2026-02-03
+description: "We all make small mistakes every day. Unfortunately, some of these mistakes are unforgivable because we end up destroying or losing data for various reasons."
 categories:
-- "Linux"
+  - "Linux"
 tags:
-- "linux"
-- "recovery"
-widgets:
-- "categories"
-- "taglist"
+  - "linux"
+  - "recovery"
 ---
 
 We all make small mistakes every day. Unfortunately, some of these mistakes are unforgivable because we end up destroying or losing data for various reasons.
@@ -33,7 +30,7 @@ First, we need to identify the PID of the running process by using the ps comman
 ```
 
 After that we need to check if the file is still in use.
-```shell
+```text
 # ls -al /proc/`pidof webapp`/fd
 total 0
 dr-x------ 2 webuser webuser  0 Jul 22 21:23 .
@@ -48,7 +45,7 @@ lrwx------ 1 webuser webuser 64 Jul 22 21:23 6 -> /opt/webapp/var/logs/access.lo
 lrwx------ 1 webuser webuser 64 Jul 22 21:23 7 -> /opt/webapp/var/database.sqlite (deleted)
 lrwx------ 1 webuser webuser 64 Jul 22 21:23 8 -> socket:[63385378]
 lrwx------ 1 webuser webuser 64 Jul 22 21:23 9 -> socket:[63384126]
-``` 
+```
 As you may see proc file system confirms that file database.sqlite file is still open and deleted from the disk.
 
 To recover the file, we need the inode where the file was stored, which can be retrieved using the lsoff command.

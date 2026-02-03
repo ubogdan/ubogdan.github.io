@@ -1,21 +1,19 @@
 ---
 title: "Setting Citrix XenServer 6.x/7.x/8.x to Auto-Start Virtual Machines"
-description: ""
-date: "2022-03-15T22:07:50+02:00"
+date: 2022-03-15T22:07:50+02:00
+lastmod: 2026-02-03
 thumbnail: "images/xen-center.png"
+description: "If you are still running a Citrix Xen Hypervisor nowadays, you may discover it comes with many challenges. One of them is to discover a way to set up the..."
 categories:
-- "Virtualization"
+  - "Virtualization"
 tags:
-- "xen"
-widgets:
-- "categories"
-- "taglist"
+  - "xen"
 ---
 
-If you are still running a Citrix Xen Hypervisor nowadays, you may figure out it comes with many challenges. 
-One of them is to figure out a way to set up the imported VM appliances to start at boot time.
+If you are still running a Citrix Xen Hypervisor nowadays, you may discover it comes with many challenges. 
+One of them is to discover a way to set up the imported VM appliances to start at boot time.
 
-Upgrading the Xen server to a new version is quite simple and has the advantage of preserving the preview settings. 
+Upgrading the Xen server to a new version is quite simple and has the advantage of preserving the previous settings. 
 Sometimes this is not possible due to hardware aging when we need to do a clean install for the supervisor and reimport the virtual appliances.
 
 <!--more--> 
@@ -36,7 +34,7 @@ uuid ( RO)                : ae883deb-6278-18f1-b599-810a47066c33
           default-SR ( RW): bd78ed68-112f-4929-f230-174c261bbf6b
 ```
 
-2. Type the following command and update UUID value obtained in the preview screen to set the pool or server to allow auto-start:
+2. Type the following command and update UUID value obtained in the previous screen to set the pool or server to allow auto-start:
 ```shell
 [root@xen ~]# xe pool-param-set uuid=ae883deb-6278-18f1-b599-810a47066c33 other-config:auto_poweron=true
 ```
@@ -58,9 +56,9 @@ uuid ( RO)           : d20c6c7f-e3d3-5731-48c1-9b1d8163a23c
     power-state ( RO): running
 ```
 
-Type the following command and update UUID value obtained in the preview screen for each Virtual Machine to auto-start:
+Type the following command and update UUID value obtained in the previous screen for each Virtual Machine to auto-start:
 ```shell
-[root@xen ~]# xe vm-param-set uuid=d20c6c7f-e3d3-5731-48c1-9b1d8163a23c other-confi:auto_poweron=true
+[root@xen ~]# xe vm-param-set uuid=d20c6c7f-e3d3-5731-48c1-9b1d8163a23c other-config:auto_poweron=true
 ```
 
 Inspiration for this article where taken from the support ticket [CTX133910](https://support.citrix.com/article/CTX133910).
