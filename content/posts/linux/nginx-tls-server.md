@@ -6,8 +6,8 @@ description: "Static site generators are a fantastic way to manage a website. St
 categories:
   - "Linux"
 tags:
-  - "linux"
-  - "nginx"
+  - "Linux"
+  - "HTTP"
 ---
 Static site generators are a fantastic way to manage a website. Static sites are faster and safer than dynamic sites. 
 Nginx is an ideal web server for serving these static files. 

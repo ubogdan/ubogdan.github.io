@@ -8,6 +8,7 @@ categories:
 tags:
   - "programming"
   - "golang"
+  - "socks5"
 ---
 
 Businesses use the SOCKS5 proxy all of the time, mostly for security purposes. Since security is a major point of any data-driven organization, including a SOCKS5 proxy could significantly ramp up the digital security of the company’s data.

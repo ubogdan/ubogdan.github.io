@@ -5,11 +5,12 @@ lastmod: 2026-02-03
 thumbnail: "images/http-logging-middleware.png"
 description: "Observability is the cornerstone of modern web applications. When your API starts experiencing issues at 3 AM, comprehensive logging can mean the difference..."
 categories:
-  - Programming
+  - "Programming"
 tags:
-  - golang
-  - middleware
-  - programming
+  - "golang"
+  - "http"
+  - "middleware"
+  - "programming"
 ---
 
 Observability is the cornerstone of modern web applications. When your API starts experiencing issues at 3 AM, comprehensive logging can mean the difference between a quick fix and hours of frustrated debugging. In this guide, we'll build a production-grade HTTP logging middleware for Gorilla Mux that goes beyond simple request logging to provide actionable insights into your application's behavior.

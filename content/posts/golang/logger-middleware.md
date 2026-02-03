@@ -4,11 +4,12 @@ date: 2023-01-02T23:49:20+03:00
 lastmod: 2026-02-03
 description: "A logging middleware is a piece of software that sits between the incoming request and the final handler function in a web application. Its primary purpose..."
 categories:
-  - Programming
+  - "Programming"
 tags:
-  - golang
-  - middleware
-  - programming
+  - "golang"
+  - "http"
+  - "middleware"
+  - "programming"
 ---
 
 A logging middleware is a piece of software that sits between the incoming request and the final handler function in a web application. Its primary purpose is to log information about each request that comes through the application.

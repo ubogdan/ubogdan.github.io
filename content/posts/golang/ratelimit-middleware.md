@@ -7,6 +7,7 @@ categories:
   - "Programming"
 tags:
   - "golang"
+  - "http"
   - "middleware"
   - "programming"
 ---
