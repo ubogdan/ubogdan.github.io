@@ -5,10 +5,7 @@ tags: ["security", "golang"]
 categories: ["SecOps", "Programming"]
 description: "Automate compliance requirements and audit trails for Go applications meeting SOC2 and HIPAA standards."
 series: "Security Operations"
-draft: true
 ---
-
-# Compliance Automation: SOC2 and HIPAA for Go Applications
 
 In today's regulatory landscape, compliance isn't just a checkbox—it's a critical business requirement that can make or break your organization. Whether you're handling sensitive customer data or protected health information, meeting standards like **SOC2** and **HIPAA** is essential for maintaining trust and avoiding costly penalties. For Go applications, implementing compliance automation can streamline audits, reduce human error, and ensure continuous adherence to regulatory requirements.
 
@@ -462,4 +459,296 @@ func (cm *ComplianceMiddleware) AuditMiddleware(next http.Handler) http.Handler 
 }
 
 // AuthorizationMiddleware enforces access control
-func (cm *ComplianceMiddleware) AuthorizationMiddleware(resource string) func(http
+func (cm *ComplianceMiddleware) AuthorizationMiddleware(resource string) func(http.Handler) http.Handler {
+    return func(next http.Handler) http.Handler {
+        return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+            req := AccessRequest{
+                UserID:    getUserID(r),
+                Resource:  resource,
+                Action:    r.Method,
+                IPAddress: getClientIP(r),
+                UserAgent: r.UserAgent(),
+                SessionID: getSessionID(r),
+                Context: map[string]string{
+                    "path":   r.URL.Path,
+                    "method": r.Method,
+                    "env":    r.Header.Get("X-Environment"),
+                },
+            }
+
+            allowed, err := cm.accessController.CheckAccess(r.Context(), req)
+            if err != nil {
+                http.Error(w, "authorization check failed", http.StatusInternalServerError)
+                return
+            }
+            if !allowed {
+                http.Error(w, "access denied", http.StatusForbidden)
+                return
+            }
+
+            next.ServeHTTP(w, r)
+        })
+    }
+}
+
+type responseWriter struct {
+    http.ResponseWriter
+    statusCode   int
+    bytesWritten int
+}
+
+func (rw *responseWriter) WriteHeader(code int) {
+    rw.statusCode = code
+    rw.ResponseWriter.WriteHeader(code)
+}
+
+func (rw *responseWriter) Write(b []byte) (int, error) {
+    n, err := rw.ResponseWriter.Write(b)
+    rw.bytesWritten += n
+    return n, err
+}
+
+func getResultFromStatus(status int) ActionResult {
+    switch {
+    case status >= 200 && status < 400:
+        return ResultSuccess
+    case status == http.StatusForbidden || status == http.StatusUnauthorized:
+        return ResultDenied
+    default:
+        return ResultFailure
+    }
+}
+
+func getSeverityFromStatus(status int) SeverityLevel {
+    switch {
+    case status >= 500:
+        return SeverityHigh
+    case status >= 400:
+        return SeverityMedium
+    default:
+        return SeverityLow
+    }
+}
+
+func getUserID(r *http.Request) string {
+    // Replace with your real identity extraction logic.
+    if userID := r.Header.Get("X-User-ID"); userID != "" {
+        return userID
+    }
+    return "anonymous"
+}
+
+func getSessionID(r *http.Request) string {
+    if sessionID := r.Header.Get("X-Session-ID"); sessionID != "" {
+        return sessionID
+    }
+    return "unknown"
+}
+
+func getClientIP(r *http.Request) string {
+    if forwarded := r.Header.Get("X-Forwarded-For"); forwarded != "" {
+        return forwarded
+    }
+    return r.RemoteAddr
+}
+```
+
+## Data Model and Retention Controls
+
+A compliance design is only as strong as its evidence lifecycle. SOC2 and HIPAA auditors will ask not only _what_ you log, but also how you guarantee integrity, retention, and deletion.
+
+Use an append-only table with strict indexing:
+
+```sql
+CREATE TABLE IF NOT EXISTS compliance_events (
+    id              UUID PRIMARY KEY,
+    timestamp       TIMESTAMPTZ NOT NULL,
+    event_type      TEXT NOT NULL,
+    user_id         TEXT NOT NULL,
+    resource_id     TEXT NOT NULL,
+    action          TEXT NOT NULL,
+    result          TEXT NOT NULL,
+    ip_address      TEXT,
+    user_agent      TEXT,
+    metadata        JSONB,
+    severity        TEXT NOT NULL,
+    compliance      TEXT NOT NULL,
+    created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_compliance_events_timestamp
+    ON compliance_events(timestamp DESC);
+
+CREATE INDEX IF NOT EXISTS idx_compliance_events_user_timestamp
+    ON compliance_events(user_id, timestamp DESC);
+
+CREATE INDEX IF NOT EXISTS idx_compliance_events_severity_timestamp
+    ON compliance_events(severity, timestamp DESC);
+```
+
+For retention, keep policy explicit and automated:
+
+- SOC2-focused system events: retain according to your control narrative (commonly 12+ months).
+- HIPAA-linked audit data: align with your legal and organizational retention policy.
+- Use scheduled archival to immutable storage before deletion.
+- Never run ad-hoc cleanup manually in production.
+
+## Automated Evidence Collection
+
+A common failure mode is having good controls but poor evidence packaging. Build evidence exports as code so each control maps to repeatable artifacts.
+
+```go
+// pkg/compliance/evidence.go
+package compliance
+
+import (
+    "context"
+    "database/sql"
+    "encoding/json"
+    "fmt"
+    "os"
+    "time"
+)
+
+type EvidenceExporter struct {
+    db *sql.DB
+}
+
+type ControlEvidence struct {
+    ControlID   string                 `json:"control_id"`
+    Standard    ComplianceStandard     `json:"standard"`
+    GeneratedAt time.Time              `json:"generated_at"`
+    WindowStart time.Time              `json:"window_start"`
+    WindowEnd   time.Time              `json:"window_end"`
+    Summary     map[string]interface{} `json:"summary"`
+}
+
+func NewEvidenceExporter(db *sql.DB) *EvidenceExporter {
+    return &EvidenceExporter{db: db}
+}
+
+func (ee *EvidenceExporter) ExportAccessControlEvidence(ctx context.Context, start, end time.Time, outputPath string) error {
+    query := `
+        SELECT result, COUNT(*)
+        FROM compliance_events
+        WHERE timestamp BETWEEN $1 AND $2
+          AND event_type = 'authorization'
+        GROUP BY result`
+
+    rows, err := ee.db.QueryContext(ctx, query, start, end)
+    if err != nil {
+        return fmt.Errorf("query evidence: %w", err)
+    }
+    defer rows.Close()
+
+    summary := map[string]interface{}{}
+    for rows.Next() {
+        var result string
+        var count int
+        if err := rows.Scan(&result, &count); err != nil {
+            return fmt.Errorf("scan evidence row: %w", err)
+        }
+        summary[result] = count
+    }
+
+    evidence := ControlEvidence{
+        ControlID:   "CC6.1",
+        Standard:    StandardSOC2,
+        GeneratedAt: time.Now().UTC(),
+        WindowStart: start,
+        WindowEnd:   end,
+        Summary:     summary,
+    }
+
+    data, err := json.MarshalIndent(evidence, "", "  ")
+    if err != nil {
+        return fmt.Errorf("marshal evidence: %w", err)
+    }
+
+    if err := os.WriteFile(outputPath, data, 0o600); err != nil {
+        return fmt.Errorf("write evidence file: %w", err)
+    }
+
+    return nil
+}
+```
+
+This gives auditors structured, timestamped evidence generated from the same production telemetry your system uses day to day.
+
+## CI/CD Compliance Gates
+
+Compliance automation should fail fast. If your pipeline can block risky releases, your controls become preventive rather than detective.
+
+```yaml
+name: compliance-gates
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  compliance:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: Run tests
+        run: go test ./...
+
+      - name: Security static analysis
+        run: |
+          go install github.com/securego/gosec/v2/cmd/gosec@latest
+          gosec ./...
+
+      - name: Verify migrations include audit schema
+        run: |
+          grep -R "CREATE TABLE IF NOT EXISTS compliance_events" migrations/
+
+      - name: Ensure compliance docs updated for control changes
+        run: |
+          test -f docs/compliance/control-matrix.md
+```
+
+A practical pattern is to require a control-owner review when code touches authorization, encryption, or audit pipelines.
+
+## Operational Best Practices
+
+- Treat compliance controls as first-class product requirements, not release-time checklists.
+- Keep a control matrix in version control that maps every control to code, telemetry, and owner.
+- Use least-privilege database access for audit writes and read-only roles for reporting.
+- Validate clocks and time sync across services; unreliable timestamps weaken audit evidence.
+- Run quarterly evidence fire-drills: generate sample auditor packets and verify completeness.
+- Document exceptions with expiration dates and explicit risk acceptance.
+
+## Common Pitfalls to Avoid
+
+- Logging sensitive payloads (full PHI/PII) in `metadata` without minimization.
+- Allowing mutable or deletable audit tables without archival guarantees.
+- Running compliance checks only before audits instead of continuously.
+- Having access policies defined in code but no tests for deny paths.
+- Failing to tie alerts to response runbooks and ownership.
+
+## Conclusion
+
+Compliance automation for SOC2 and HIPAA in Go is fundamentally about repeatability, traceability, and operational discipline. Strong controls come from combining policy-aware access checks, high-fidelity audit logging, and automated evidence generation into one coherent platform.
+
+The implementation patterns in this guide are designed to be incremental. Start with reliable audit event capture and policy-backed authorization. Then add retention controls, evidence exporters, and CI/CD gates that prevent non-compliant changes from shipping. This sequencing gives you early value while steadily improving assurance.
+
+Most importantly, treat compliance as a continuous engineering capability. When controls, code, and evidence evolve together, audits become simpler, security posture improves, and your Go platform scales with confidence.
+
+## Additional Resources
+
+- [AICPA SOC 2 Overview](https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2)
+- [HIPAA Security Rule Summary](https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html)
+- [NIST SP 800-53 Security Controls](https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final)
+- [Open Policy Agent](https://www.openpolicyagent.org/)
+- [Go slog Package](https://pkg.go.dev/log/slog)
+
