@@ -2,6 +2,7 @@
 title: "Generative AI for Code: How Tools Like GitHub Copilot Are Reshaping Developer Productivity"
 date: 2026-06-28T10:15:30+03:00
 lastmod: 2026-06-28
+thumbnail: "images/generative-ai-for-code.png"
 description: "Discover how generative AI tools are transforming software development with practical adoption strategies, ethical considerations, and measurable impacts on development cycles."
 categories:
   - "Programming"
