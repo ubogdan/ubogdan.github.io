@@ -1,13 +1,13 @@
 ---
-title: "Static website hosting with NGINX and LetsEncrypt"
-date: 2021-09-15T16:50:53+03:00
+title: Static website hosting with NGINX and LetsEncrypt
+date: 2021-09-15 16:50:53+03:00
 lastmod: 2026-02-03
-description: "Static site generators are a fantastic way to manage a website. Static sites are faster and safer than dynamic sites. Nginx is an ideal web server for..."
+description: Static site generators are a fantastic way to manage a website. Static
+  sites are faster and safer than dynamic sites. Nginx is an ideal web server for...
 categories:
-  - "Linux"
+- Linux
 tags:
-  - "Linux"
-  - "HTTP"
+- Linux
 ---
 Static site generators are a fantastic way to manage a website. Static sites are faster and safer than dynamic sites. 
 Nginx is an ideal web server for serving these static files. 

@@ -1,12 +1,13 @@
 ---
-title: "Cheatsheet Utility"
-date: 2022-04-01T20:33:39+03:00
+title: Cheatsheet Utility
+date: 2022-04-01 20:33:39+03:00
 lastmod: 2026-02-03
-description: "It is often helpful to have a quick reference to a set of commands in a development environment. Some of them are hard to remember because they are not very..."
+description: It is often helpful to have a quick reference to a set of commands in
+  a development environment. Some of them are hard to remember because they are not
+  very...
 categories:
-  - "Linux"
-tags:
-  - "cheatsheet"
+- Linux
+tags: []
 ---
 
 It is often helpful to have a quick reference to a set of commands in a development environment. Some of them are hard to remember because they are not very common. Whether you're working with system administration tools, programming utilities, or specialized Linux commands, trying to memorize complex syntax can be frustrating and time-consuming.

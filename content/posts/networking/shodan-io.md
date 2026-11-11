@@ -1,14 +1,14 @@
 ---
-title: "Shodan.io tips and tricks"
-date: 2022-12-15T23:00:00+03:00
+title: Shodan.io tips and tricks
+date: 2022-12-15 23:00:00+03:00
 lastmod: 2026-02-03
-thumbnail: "images/shodan.png"
-description: "Shodan is a search engine for the internet of things (IoT). It allows users to search for specific types of internet-connected devices, such as security..."
+thumbnail: images/shodan.png
+description: Shodan is a search engine for the internet of things (IoT). It allows
+  users to search for specific types of internet-connected devices, such as security...
 categories:
-  - "Networking"
+- Networking
 tags:
-  - "Discovery"
-  - "Networking"
+- Networking
 ---
 
 Shodan is a search engine for the internet of things (IoT). It allows users to search for specific types of internet-connected devices, such as security cameras or industrial control systems, and view information about them, such as their location, their internet protocol (IP) address, and their manufacturer. 

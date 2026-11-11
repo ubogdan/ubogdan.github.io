@@ -1,21 +1,21 @@
 ---
-title: "Building AI Agents with Ollama and Tool Calling in Go"
-date: 2026-10-21T13:00:00+02:00
-publishDate: 2026-10-21T13:00:00+02:00
+title: Building AI Agents with Ollama and Tool Calling in Go
+date: 2026-10-21 13:00:00+02:00
+publishDate: 2026-10-21 13:00:00+02:00
 lastmod: 2026-10-21
 draft: false
-thumbnail: "images/ollama-ai-agents.png"
-description: "Learn how to build intelligent AI agents using local Ollama models with tool calling capabilities in Go. Implement function calling, message history management, and autonomous task execution without cloud dependencies."
+thumbnail: images/ollama-ai-agents.png
+description: Learn how to build intelligent AI agents using local Ollama models with
+  tool calling capabilities in Go. Implement function calling, message history management,
+  and autonomous task execution without cloud dependencies.
 categories:
-  - "Programming"
+- Programming
 tags:
-  - "golang"
-  - "llm"
-  - "ai-agents"
-  - "tools"
-  - "automation"
-  - "concurrency"
-  - "patterns"
+- golang
+- ai-agents
+- tools
+- automation
+- patterns
 ---
 
 The landscape of AI development is undergoing a fundamental shift. What once required expensive API calls to cloud-based LLM providers can now run entirely on your local machine using Ollama. But raw language models alone aren't enough to build truly useful AI systems—they need the ability to **take actions** through tool calling, also known as function calling.

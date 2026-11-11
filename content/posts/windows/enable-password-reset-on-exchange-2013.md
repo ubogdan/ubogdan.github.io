@@ -1,12 +1,12 @@
 ---
-title: "Enable Password Reset Feature on Exchange 2013"
-date: 2022-03-23T19:54:45+02:00
+title: Enable Password Reset Feature on Exchange 2013
+date: 2022-03-23 19:54:45+02:00
 lastmod: 2026-02-03
-description: "Exchange Control Panel (ECP) is a web based management and configuration interface that allows you to manage various aspects of the server configuration."
+description: Exchange Control Panel (ECP) is a web based management and configuration
+  interface that allows you to manage various aspects of the server configuration.
 categories:
-  - "Windows"
-tags:
-  - "exchange"
+- Windows
+tags: []
 ---
 
 Exchange Control Panel (ECP) is a web based management and configuration interface that allows you to manage various aspects of the server configuration. 

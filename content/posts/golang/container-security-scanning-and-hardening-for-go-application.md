@@ -1,10 +1,15 @@
 ---
-title: "Container Security Scanning and Hardening for Go Applications"
-date: 2025-10-18T16:44:52+03:00
-tags: [ "docker", "golang", "scanning", "security"]
-categories: [ "SecOps", "Programming"]
-description: "Implement security scanning, vulnerability management, and hardening for Go container images."
-series: "Security Operations"
+title: Container Security Scanning and Hardening for Go Applications
+date: 2025-10-18 16:44:52+03:00
+tags:
+- golang
+- security
+categories:
+- SecOps
+- Programming
+description: Implement security scanning, vulnerability management, and hardening
+  for Go container images.
+series: Security Operations
 ---
 
 Container security has become a critical concern as organizations increasingly adopt containerized applications. With the rise of microservices and cloud-native architectures, Go applications running in containers face numerous security challenges, from vulnerable base images to misconfigurations that can expose sensitive data or provide attack vectors.

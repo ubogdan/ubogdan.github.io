@@ -1,14 +1,15 @@
 ---
-title: "Connect to remote website using socks5 proxy"
-date: 2021-10-13T23:57:09+03:00
+title: Connect to remote website using socks5 proxy
+date: 2021-10-13 23:57:09+03:00
 lastmod: 2026-02-03
-description: "Businesses use the SOCKS5 proxy all of the time, mostly for security purposes. Since security is a major point of any data-driven organization, including a..."
+description: Businesses use the SOCKS5 proxy all of the time, mostly for security
+  purposes. Since security is a major point of any data-driven organization, including
+  a...
 categories:
-  - "Programming"
+- Programming
 tags:
-  - "programming"
-  - "golang"
-  - "socks5"
+- programming
+- golang
 ---
 
 Businesses use the SOCKS5 proxy all of the time, mostly for security purposes. Since security is a major point of any data-driven organization, including a SOCKS5 proxy could significantly ramp up the digital security of the company’s data.

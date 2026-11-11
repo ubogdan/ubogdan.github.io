@@ -1,15 +1,15 @@
 ---
-title: "Setting Up a Redundant Internet Connection With BGP on Mikrotik ROs7"
-date: 2021-11-30T11:45:22+02:00
+title: Setting Up a Redundant Internet Connection With BGP on Mikrotik ROs7
+date: 2021-11-30 11:45:22+02:00
 lastmod: 2026-02-03
-thumbnail: "images/mkt-ccr2004-16g-2s.png"
-description: "Setting up bgp on mikrotik CCR2004-16G-2S+ was quite challenging because it only supports ROs7."
+thumbnail: images/mkt-ccr2004-16g-2s.png
+description: Setting up bgp on mikrotik CCR2004-16G-2S+ was quite challenging because
+  it only supports ROs7.
 categories:
-  - "Networking"
+- Networking
 tags:
-  - "bgp"
-  - "networking"
-  - "mikrotik"
+- bgp
+- networking
 ---
 
 Setting up bgp on mikrotik CCR2004-16G-2S+ was quite challenging because it only supports ROs7. 

@@ -1,14 +1,13 @@
 ---
-title: "Signing GIT commits with GPG"
-date: 2022-03-13T18:32:54+02:00
+title: Signing GIT commits with GPG
+date: 2022-03-13 18:32:54+02:00
 lastmod: 2026-02-03
-description: "Even if you don't know about signed Git commits, you might have seen this on GitHub:"
+description: 'Even if you don''t know about signed Git commits, you might have seen
+  this on GitHub:'
 categories:
-  - "Programming"
+- Programming
 tags:
-  - "programming"
-  - "git"
-  - "gpg"
+- programming
 ---
 
 

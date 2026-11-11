@@ -1,14 +1,14 @@
 ---
-title: "Identify and Remove Rogue DHCP Server"
-date: 2021-08-01T00:13:55+03:00
+title: Identify and Remove Rogue DHCP Server
+date: 2021-08-01 00:13:55+03:00
 lastmod: 2026-02-03
-description: "A DHCP (Dynamic Host Configuration Protocol) server is a networking service that automatically assigns IP addresses to devices on a network."
+description: A DHCP (Dynamic Host Configuration Protocol) server is a networking service
+  that automatically assigns IP addresses to devices on a network.
 categories:
-  - "Linux"
+- Linux
 tags:
-  - "linux"
-  - "networking"
-  - "dhcp"
+- linux
+- networking
 ---
 
 A DHCP (Dynamic Host Configuration Protocol) server is a networking service that automatically assigns IP addresses to devices on a network. This is essential for modern networks to function efficiently without manual IP address configuration.

@@ -1,11 +1,14 @@
 ---
-title: "API Security in Go: Rate Limiting, JWT Authentication, and RBAC"
-date: 2025-11-02T08:52:09+02:00
-tags: ["api-security", "golang", "jwt", "rbac", "authentication", "authorization"]
-categories: ["SecOps"]
-description: "Build production-ready API security with practical examples of rate limiting, JWT authentication, and role-based access control in Go."
-series: "Security Operations"
-thumbnail: "images/api-security-rl-auth-rbac.png"
+title: 'API Security in Go: Rate Limiting, JWT Authentication, and RBAC'
+date: 2025-11-02 08:52:09+02:00
+tags:
+- golang
+categories:
+- SecOps
+description: Build production-ready API security with practical examples of rate limiting,
+  JWT authentication, and role-based access control in Go.
+series: Security Operations
+thumbnail: images/api-security-rl-auth-rbac.png
 ---
 
 ## Introduction

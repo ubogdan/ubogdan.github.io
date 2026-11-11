@@ -1,11 +1,15 @@
 ---
-title: "GitOps Workflows: Automating Kubernetes Deployments with ArgoCD"
-date: 2026-02-03T14:45:18+02:00
-tags: ["DevOps", "Kubernetes", "automation", "deployment"]
-categories: ["DevOps"]
-description: "Implement GitOps practices for Kubernetes deployments using ArgoCD and Go applications."
-series: "Kubernetes Mastery"
-thumbnail: "images/argocd-workflow.png"
+title: 'GitOps Workflows: Automating Kubernetes Deployments with ArgoCD'
+date: 2026-02-03 14:45:18+02:00
+tags:
+- Kubernetes
+- automation
+categories:
+- DevOps
+description: Implement GitOps practices for Kubernetes deployments using ArgoCD and
+  Go applications.
+series: Kubernetes Mastery
+thumbnail: images/argocd-workflow.png
 ---
 
 

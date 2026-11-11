@@ -1,13 +1,13 @@
 ---
-title: "How to recover a deleted file when a process keeps it open."
-date: 2021-07-22T20:44:10+03:00
+title: How to recover a deleted file when a process keeps it open.
+date: 2021-07-22 20:44:10+03:00
 lastmod: 2026-02-03
-description: "We all make small mistakes every day. Unfortunately, some of these mistakes are unforgivable because we end up destroying or losing data for various reasons."
+description: We all make small mistakes every day. Unfortunately, some of these mistakes
+  are unforgivable because we end up destroying or losing data for various reasons.
 categories:
-  - "Linux"
+- Linux
 tags:
-  - "linux"
-  - "recovery"
+- linux
 ---
 
 We all make small mistakes every day. Unfortunately, some of these mistakes are unforgivable because we end up destroying or losing data for various reasons.

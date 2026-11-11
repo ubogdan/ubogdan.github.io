@@ -1,13 +1,13 @@
 ---
-title: "Setting Citrix XenServer 6.x/7.x/8.x to Auto-Start Virtual Machines"
-date: 2022-03-15T22:07:50+02:00
+title: Setting Citrix XenServer 6.x/7.x/8.x to Auto-Start Virtual Machines
+date: 2022-03-15 22:07:50+02:00
 lastmod: 2026-02-03
-thumbnail: "images/xen-center.png"
-description: "If you are still running a Citrix Xen Hypervisor nowadays, you may discover it comes with many challenges. One of them is to discover a way to set up the..."
+thumbnail: images/xen-center.png
+description: If you are still running a Citrix Xen Hypervisor nowadays, you may discover
+  it comes with many challenges. One of them is to discover a way to set up the...
 categories:
-  - "Virtualization"
-tags:
-  - "xen"
+- Virtualization
+tags: []
 ---
 
 If you are still running a Citrix Xen Hypervisor nowadays, you may discover it comes with many challenges. 

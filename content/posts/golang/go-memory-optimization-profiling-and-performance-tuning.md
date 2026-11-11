@@ -1,10 +1,13 @@
 ---
-title: "Go Memory Optimization: Profiling and Performance Tuning Techniques"
-date: 2025-11-18T21:42:21+02:00
-tags: ["go-profiling", "memory-optimization", "performance-tuning", "pprof", "garbage-collection"]
-categories: ["Programming", "Performance Engineering"]
-description: "Master Go memory profiling tools and techniques to identify bottlenecks, optimize garbage collection, and reduce memory footprint in production applications."
-thumbnail: "images/go-memory-optimization.png"
+title: 'Go Memory Optimization: Profiling and Performance Tuning Techniques'
+date: 2025-11-18 21:42:21+02:00
+tags: []
+categories:
+- Programming
+- Performance Engineering
+description: Master Go memory profiling tools and techniques to identify bottlenecks,
+  optimize garbage collection, and reduce memory footprint in production applications.
+thumbnail: images/go-memory-optimization.png
 ---
 
 

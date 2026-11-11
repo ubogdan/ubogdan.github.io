@@ -1,10 +1,15 @@
 ---
-title: "Connecting Dell Unity XT to Kubernetes with CSI-Unity on Bare-Metal"
-date: 2025-11-22T19:52:02+02:00
-tags: ["Kubernetes", "Helm", "Linux"]
-categories: ["DevOps", "Linux"]
-description: "Setup Ubuntu node to pair with Dell Unity XT on Bare-Metal Kubernetes Cluster"
-thumbnail: "images/dell-unity-xt.jpeg"
+title: Connecting Dell Unity XT to Kubernetes with CSI-Unity on Bare-Metal
+date: 2025-11-22 19:52:02+02:00
+tags:
+- Kubernetes
+- Linux
+categories:
+- DevOps
+- Linux
+description: Setup Ubuntu node to pair with Dell Unity XT on Bare-Metal Kubernetes
+  Cluster
+thumbnail: images/dell-unity-xt.jpeg
 ---
 
 The Dell Container Storage Interface (CSI) Driver for Unity XT enables Kubernetes clusters to provision and manage storage volumes from Dell Unity XT arrays. This guide provides a comprehensive walkthrough for deploying CSI-Unity on a bare-metal Kubernetes cluster running Ubuntu 24.04, including multipath configuration and troubleshooting strategies.
