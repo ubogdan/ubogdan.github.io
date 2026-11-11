@@ -9,6 +9,7 @@ categories:
 description: Set up a first OpenTofu workflow with remote state, automated plan reviews,
   and policy checks using OPA. Learn how to detect and remediate configuration drift
   in a team setting.
+thumbnail: /images/infrastructure-as-code-beyond-terraform.png
 ---
 
 ## Introduction
